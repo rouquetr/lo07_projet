@@ -11,8 +11,6 @@ and open the template in the editor.
     </head>
     <body>
         <?php
-        // coucou
-        echo("Bite");
         ?>
     </body>
 </html>
