@@ -73,7 +73,7 @@
     <header style="background-image:url(img/utt.png)">
         <div class="container">
             <div class="row">
-                <div class="col-lg-12">
+                <div class="col-lg-12"> 
                     <div class="intro-text">
                         <span class="name">Bienvenue</span>
                         <hr class="star-light">
