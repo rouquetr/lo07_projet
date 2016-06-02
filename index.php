@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-sm-4 labo-item">
+                <div class="col-sm-3 labo-item">
                     <a href="#laboModal1" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -104,7 +104,7 @@
                         <img src="img/portfolio/cabin.png" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-sm-4 labo-item">
+                <div class="col-sm-3 labo-item">
                     <a href="#laboModal2" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -114,7 +114,7 @@
                         <img src="img/portfolio/cake.png" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-sm-4 labo-item">
+                <div class="col-sm-3 labo-item">
                     <a href="#laboModal3" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -124,7 +124,7 @@
                         <img src="img/portfolio/circus.png" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-sm-4 labo-item">
+                <div class="col-sm-3 labo-item">
                     <a href="#laboModal4" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -135,7 +135,7 @@
                         <h5>Un labo</h5>
                     </a>
                 </div>
-                <div class="col-sm-4 labo-item">
+                <div class="col-sm-3 labo-item">
                     <a href="#laboModal5" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -145,7 +145,7 @@
                         <img src="img/portfolio/safe.png" class="img-responsive" alt="">
                     </a>
                 </div>
-                <div class="col-sm-4 labo-item">
+                <div class="col-sm-3 labo-item">
                     <a href="#laboModal6" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
@@ -154,7 +154,27 @@
                         </div>
                         <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
                     </a>
-                    <div class="col-sm-4 labo-item">
+                </div>
+                <div class="col-sm-3 labo-item">
+                    <a href="#laboModal7" class="labo-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
+                    </a>
+                </div>
+                <div class="col-sm-3 labo-item">
+                    <a href="#laboModal8" class="labo-link" data-toggle="modal">
+                        <div class="caption">
+                            <div class="caption-content">
+                                <i class="fa fa-search-plus fa-3x"></i>
+                            </div>
+                        </div>
+                        <img src="img/portfolio/submarine.png" class="img-responsive" alt="">
+                        
+                    </a>
                 </div>
             </div>
         </div>
