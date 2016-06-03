@@ -132,7 +132,6 @@
                             </div>
                         </div>
                         <img src="img/portfolio/game.png" class="img-responsive" alt="">
-                        <h5>Un labo</h5>
                     </a>
                 </div>
                 <div class="col-sm-3 labo-item">
@@ -185,7 +184,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>About</h2>
+                    <h2>Publications récentes</h2>
                     <hr class="star-light">
                 </div>
             </div>
