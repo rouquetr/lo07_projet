@@ -155,7 +155,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 labo-item">
-                    <a href="#laboModal8" class="labo-link" data-toggle="modal">
+                    <a href="#laboModal7" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -165,7 +165,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 labo-item">
-                    <a href="#laboModal9" class="labo-link" data-toggle="modal">
+                    <a href="#laboModal8" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -384,8 +384,8 @@
                         <div class="modal-body">
                             <h2>LM2S</h2>
                             <hr class="star-primary">
-                            <img src="img/labs/LM2S.png" class="img-responsive img-centered" alt="">
-                            <p>Bonjour monsieur</p>
+                            <img src="img/labs/LM2S.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>Le Laboratoire de Modélisation et Sûreté des Systèmes a été créé en 1995. Il regroupe au sein d’une même équipe, des spécialistes en sûreté de fonctionnement et en surveillance des systèmes. Ce laboratoire est fortement impliqué dans le transfert de technologies, notamment avec PSA Peugeot-Citroën, Renault, Michelin, SNECMA, EDF, CEA, INERIS, …</p>
                             <br/>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
@@ -408,32 +408,8 @@
                         <div class="modal-body">
                             <h2>LNIO</h2>
                             <hr class="star-primary">
-                            <img src="img/labs/LNIO.png" class="img-responsive img-centered" alt="">
-                            <p></p>
-                            <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div
-   <div class="labo-modal modal fade" id="laboModal8" tabindex="-1" role="dialog" aria-hidden="true">
-        <div class="modal-content">
-            <div class="close-modal" data-dismiss="modal">
-                <div class="lr">
-                    <div class="rl">
-                    </div>
-                </div>
-            </div>
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-8 col-lg-offset-2">
-                        <div class="modal-body">
-                            <h2>TechCICO</h2>
-                            <hr class="star-primary">
-                            <img src="img/labs/TechCICO.png" class="img-responsive img-centered" alt="">
-                            <p></p>
+                            <img src="img/labs/LNIO.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>Créée en 1994, l’équipe du Laboratoire de Nanotechnologie et Instrumentation Optique utilise la lumière pour étudier, observer, manipuler, structurer la matière à l’échelle nanométrique. Ses recherches trouvent une application directe dans les nano-capteurs, l’étude du vivant (membrane cellulaire)...</p>
                             <br/>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
@@ -442,7 +418,31 @@
             </div>
         </div>
     </div>
-    <div class="labo-modal modal fade" id="laboModal9" tabindex="-1" role="dialog" aria-hidden="true">
+   <div class="labo-modal modal fade" id="laboModal7" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>LOSI</h2>
+                            <hr class="star-primary">
+                            <img src="img/labs/LOSI.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>Créé en 1996, le Laboratoire d’Optimisation des Systèmes Industriels est le laboratoire de l’UTT spécialisé dans l’étude des systèmes logistiques et de production. Son objectif est de développer des outils d'aide à la décision pour améliorer ces systèmes complexes, de la conception à l'exploitation, en termes d'efficacité et de compétitivité.</p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="labo-modal modal fade" id="laboModal8" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
                 <div class="lr">
@@ -456,8 +456,8 @@
                         <div class="modal-body">
                             <h2>TechCICO</h2>
                             <hr class="star-primary">
-                            <img src="img/labs/TechCICO.png" class="img-responsive img-centered" alt="">
-                            <p></p>
+                            <img src="img/labs/TechCICO.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>Créée en 1998, l’équipe Tech-CICO articule sciences humaines et sociales & sciences et techno- logies de l'information et de la communication. Les travaux de cette équipe portent sur l'analyse, la modélisation et l’instrumentation des activités coopératives.</p>
                             <br/>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
