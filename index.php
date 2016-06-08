@@ -155,7 +155,7 @@
                     </a>
                 </div>
                 <div class="col-sm-3 labo-item">
-                    <a href="#laboModal7" class="labo-link" data-toggle="modal">
+                    <a href="#laboModal8" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
@@ -165,14 +165,13 @@
                     </a>
                 </div>
                 <div class="col-sm-3 labo-item">
-                    <a href="#laboModal8" class="labo-link" data-toggle="modal">
+                    <a href="#laboModal9" class="labo-link" data-toggle="modal">
                         <div class="caption">
                             <div class="caption-content">
                                 <i class="fa fa-search-plus fa-3x"></i>
                             </div>
                         </div>
                         <img src="img/labs/TechCICO.png" class="img-responsive" alt="">
-                        
                     </a>
                 </div>
             </div>
@@ -275,9 +274,9 @@
                         <div class="modal-body">
                             <h2>CREIDD</h2>
                             <hr class="star-primary">
-                            <img src="img/labs/CREIDD.png" class="img-responsive img-centered" alt="">
+                            <img src="img/labs/CREIDD.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créé en septembre 2001, le Centre de Recherches et d'Etudes Interdisciplinaires sur le Développement Durable s’est donné pour fin de concourir à la mise en oeuvre du développement durable. Il s’agit en particulier – dans une perspective à la fois critique et opérationnelle – de conduire des recherches sur certaines stratégies de découplage entre dynamisme socio-économique des sociétés humaines et croissance continue des flux de matière et d’énergie.</p>
-                            <ul class="list-inline item-details">
+                            <!--<ul class="list-inline item-details">
                                 <li>Client:
                                     <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
                                     </strong>
@@ -290,7 +289,8 @@
                                     <strong><a href="http://startbootstrap.com">Web Development</a>
                                     </strong>
                                 </li>
-                            </ul>
+                            </ul>-->
+                            <br/>
                             <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
                     </div>
@@ -310,25 +310,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>ERA</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/cake.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <img src="img/labs/ERA.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>L’équipe « Environnement de Réseaux Autonomes » a été créée en janvier 2008. Elle a depuis développé une forte compétence dans le domaine des réseaux et de leur pilotage ainsi qu’une compétence reconnue dans les technologies multi-agents. Cette double compétence est sans conteste la force de l’équipe d’autant plus qu’elle s'appuie sur tout un ensemble d’outils de test et de simulation.</p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
                     </div>
                 </div>
@@ -347,25 +334,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>GAMMA3</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/circus.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <img src="img/labs/GAMMA3.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>Créée en 2010, l’équipe-projet GAMMA3 (commune à l’UTT et à l’INRIA) étudie et développe des algorithmes de génération automatique de maillages, des outils pour la modélisation géométrique, ainsi que des méthodologies adaptatives avancées pour la simulation numérique.</p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
                     </div>
                 </div>
@@ -384,25 +358,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>LASMIS</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/game.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <img src="img/labs/LASMIS.png" width=400 class="img-responsive img-centered" alt="">
+                            <p>Le Laboratoire des Systèmes Mécaniques et d'Ingénierie Simultanée a été créé en septembre 1994, en même temps que l'Université de Technologie de Troyes. L'objectif du LASMIS est de développer des outils d'ingénierie mécanique pour la conception et la fabrication de composants critiques pour la sécurité et la sureté de fonctionnement. </p>
+                            <br/>
+                            <on type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
                     </div>
                 </div>
@@ -421,25 +382,12 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>LM2S</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/safe.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <img src="img/labs/LM2S.png" class="img-responsive img-centered" alt="">
+                            <p>Bonjour monsieur</p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
                     </div>
                 </div>
@@ -458,25 +406,60 @@
                 <div class="row">
                     <div class="col-lg-8 col-lg-offset-2">
                         <div class="modal-body">
-                            <h2>Project Title</h2>
+                            <h2>LNIO</h2>
                             <hr class="star-primary">
-                            <img src="img/portfolio/submarine.png" class="img-responsive img-centered" alt="">
-                            <p>Use this area of the page to describe your project. The icon above is part of a free icon set by <a href="https://sellfy.com/p/8Q9P/jV3VZ/">Flat Icons</a>. On their website, you can download their free set with 16 icons, or you can purchase the entire set with 146 icons for only $12!</p>
-                            <ul class="list-inline item-details">
-                                <li>Client:
-                                    <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
-                                    </strong>
-                                </li>
-                                <li>Date:
-                                    <strong><a href="http://startbootstrap.com">April 2014</a>
-                                    </strong>
-                                </li>
-                                <li>Service:
-                                    <strong><a href="http://startbootstrap.com">Web Development</a>
-                                    </strong>
-                                </li>
-                            </ul>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Close</button>
+                            <img src="img/labs/LNIO.png" class="img-responsive img-centered" alt="">
+                            <p></p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div
+   <div class="labo-modal modal fade" id="laboModal8" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>TechCICO</h2>
+                            <hr class="star-primary">
+                            <img src="img/labs/TechCICO.png" class="img-responsive img-centered" alt="">
+                            <p></p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="labo-modal modal fade" id="laboModal9" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal-content">
+            <div class="close-modal" data-dismiss="modal">
+                <div class="lr">
+                    <div class="rl">
+                    </div>
+                </div>
+            </div>
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-8 col-lg-offset-2">
+                        <div class="modal-body">
+                            <h2>TechCICO</h2>
+                            <hr class="star-primary">
+                            <img src="img/labs/TechCICO.png" class="img-responsive img-centered" alt="">
+                            <p></p>
+                            <br/>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
                         </div>
                     </div>
                 </div>
