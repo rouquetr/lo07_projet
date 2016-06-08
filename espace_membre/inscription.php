@@ -30,6 +30,11 @@
                     alert("L'email est vide");
                     return false;
                     }
+                    if(document.inscription.email.value.indexOf('@') == -1) {
+                    alert("Veuillez mettre une adresse email valide");
+                    document.inscrption.email.focus();
+                    return false;
+                    }
                     if (document.inscription.mdp.value=='') {
                     alert("Le mot de passe est vide");
                     return false;
