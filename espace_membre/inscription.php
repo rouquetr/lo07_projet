@@ -1,8 +1,19 @@
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
+    <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
+    <link href="../css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Custom CSS -->
+    <link href="../css/freelancer.css" rel="stylesheet">
+
+    <!-- Custom Fonts -->
+    <link href="../font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Montserrat:400,700" rel="stylesheet" type="text/css">
+    <link href="http://fonts.googleapis.com/css?family=Lato:400,700,400italic,700italic" rel="stylesheet" type="text/css">
+        
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>
-		 Page d'inscription 
+		 Inscription 
 	</title>
         <script language ="javascript" type ="text/javascript">
             
@@ -23,7 +34,7 @@
                     else document.getElementById("erreur_prenom").innerHTML = "";
                     
                     if (document.inscription.laboratoire.value=='Choisir') {
-                    document.getElementById("erreur_laboratoire").innerHTML = " veuillez chosir un labratoire de recherche.";
+                    document.getElementById("erreur_laboratoire").innerHTML = " Veuillez chosir un laboratoire de recherche.";
                     erreur = false;
                     }
                     else document.getElementById("erreur_laboratoire").innerHTML = "";
@@ -69,18 +80,23 @@
 </head>
 
 <body onload="document.inscription.reset();">
-
-    <form name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
+   <div class ="container">
+       
+   <h2>Inscription:</h2>
+   <form class ="form-horizontal" name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
  
-   <fieldset>
-       <legend>S'inscrire</legend> <!-- Titre du fieldset -->
-        
-       <label for="label">Nom</label> 
-       <input type="text" name="nom" id="nom"><span id="erreur_nom"></span><br/>
-
-    
-       <label for="label">Prénom</label> 
-       <input type="text" name="prenom" id="prenom"/><span id="erreur_prenom"></span><br/> 
+       <div class="form-group">
+       <label class="control-label col-sm-1" for="label">Nom</label> 
+           <div class="col-sm-2">
+               <input class ="form-control" type="text" name="nom" id="nom"><span style="color:red" id="erreur_nom"></span><br/>
+           </div
+       </div>
+       <div class="form-group">
+       <label class="control-label col-sm-1" for="label">Prénom</label>
+            <div class="col-sm-2">
+                <input class ="form-control" type="text" name="prenom" id="prenom"/><span style="color:red" id="erreur_prenom"></span><br/>
+            </div>
+       </div>
            
        <label for="label">Laboratoire de recherche</label> 
        <select name="laboratoire" id="laboratoire">
@@ -92,23 +108,23 @@
        <option>LM2S
        <option>LNIO
        <option>LOSI
-       <option>Tech-CICO</select><span id="erreur_laboratoire"></span><br/>
+       <option>Tech-CICO</select><span style="color:red" id="erreur_laboratoire"></span><br/>
        
        <label for="label">Organisation</label> 
-       <input type="text" name="organisation" id="organisation"/><span id="erreur_organisation"></span><br/>
+       <input class ="input-sm" type="text" name="organisation" id="organisation"/><span style="color:red" id="erreur_organisation"></span><br/>
     
        <label for="label">Adresse email</label> 
-       <input type="email" name="email" id="email"/><span id="erreur_email"></span><br/>
+       <input class ="input-sm" type="email" name="email" id="email"/><span style="color:red" id="erreur_email"></span><br/>
  
        <label for="année">Mot de passe</label> 
-       <input type="password" name="mdp" id="mdp"/><span id="erreur_mdp"></span><br/>
+       <input class ="input-sm" type="password" name="mdp" id="mdp"/><span style="color:red" id="erreur_mdp"></span><br/>
 
        <label for="passagers">Retapez votre mot de passe </label> 
-       <input type="password" name="confirm_mdp" id="confirm_mdp"/><span id="erreur_confirm_mdp"></span><br/>
+       <input class ="input-sm" type="password" name="confirm_mdp" id="confirm_mdp"/><span style="color:red" id="erreur_confirm_mdp"></span><br/>
        </p>
-       <input type="submit" value="S'inscrire" >
-
-</fieldset>
+       <input class ="btn-sm" type="submit" value="S'inscrire" >
 </form>
-</div><!-- #global --></body>
+       
+    </div>
+<!-- #global --></body>
 </html>

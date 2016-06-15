@@ -60,7 +60,7 @@
                         <a href="#about">Publications récentes</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Connexion</a>
+                        <a href="espace_membre/inscription.php">Connexion</a>
                     </li>
                 </ul>
             </div>
