@@ -51,6 +51,7 @@
                     }
                     else if (document.inscription.mdp.value!==document.inscription.confirm_mdp.value) {
                     document.getElementById("erreur_confirm_mdp").innerHTML = " Les mots de passe ne sont pas identiques.";
+                    erreur = false;
                     }
                     else document.getElementById("erreur_confirm_mdp").innerHTML = "";
                     }
@@ -69,7 +70,7 @@
 
 <body onload="document.inscription.reset();">
 
-    <form name ="inscription" method="get" onsubmit="return validation(this)" action='inscription_finie.php'>
+    <form name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
  
    <fieldset>
        <legend>S'inscrire</legend> <!-- Titre du fieldset -->

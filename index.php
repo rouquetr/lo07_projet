@@ -417,7 +417,7 @@
                 </div>
             </div>
         </div>
-    </div
+    </div>
    <div class="labo-modal modal fade" id="laboModal8" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-content">
             <div class="close-modal" data-dismiss="modal">
