@@ -108,7 +108,7 @@ session_start();
         <!-- /.container-fluid -->
     </nav>
     <body onload="document.inscription.reset();" style="background-color: #3498db">
-   <div class ="container" style="padding-top: 120px">
+   <div class ="container" style="padding-top: 140px">
        
        <h1 style="color: whitesmoke">Inscription</h1><br><br>
    <form  name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
@@ -170,10 +170,19 @@ session_start();
        </table>
    </p><br>
        <input class ="btn btn-outline btn-lg" type="submit" value="S'inscrire" >
-</form>
-       
-    </div>
-        
+           </form><br>
+    <footer class="text-center">
+        <div class="footer-below">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-12">
+                        Copyright &copy; Lefeuvre & Rouquet 2016
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+               
          <!-- jQuery -->
     <script src="js/jquery.js"></script>
 
