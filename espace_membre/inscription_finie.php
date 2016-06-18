@@ -49,6 +49,13 @@
     
     if($resultat){
         echo ("Compte créé");
+        session_start();
+        $session_requete = "select * from compte, chercheur where id_compte = id_chercheur AND email = '".$_POST['email']."'";
+        $session_resultat = mysqli_query($database, $session_requete);
+        $session = mysqli_fetch_array($session_resultat);
+        $_SESSION['nom'] = $session['nom'];
+        $_SESSION['prenom'] = $session['prenom'];
+        $_SESSION['email'] = $session['email'];
     }
     else {
         echo ("Erreur: ");

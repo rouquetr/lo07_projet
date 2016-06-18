@@ -85,21 +85,23 @@
    <h2>Inscription:</h2>
    <form class ="form-horizontal" name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
  
-       <div class="form-group">
-       <label class="control-label col-sm-1" for="label">Nom</label> 
-           <div class="col-sm-2">
-               <input class ="form-control" type="text" name="nom" id="nom"><span style="color:red" id="erreur_nom"></span><br/>
-           </div
-       </div>
-       <div class="form-group">
-       <label class="control-label col-sm-1" for="label">Prénom</label>
-            <div class="col-sm-2">
-                <input class ="form-control" type="text" name="prenom" id="prenom"/><span style="color:red" id="erreur_prenom"></span><br/>
-            </div>
-       </div>
+       <table>
+       <tbody>
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Nom</label></td>
+       <td><input class="form-control" name="nom" size="30" type="text" id = "nom"></input></td>
+       <td><span style="color:red" id="erreur_nom"></span></td>
+       </tr>
            
-       <label for="label">Laboratoire de recherche</label> 
-       <select name="laboratoire" id="laboratoire">
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Prénom</label></td>
+       <td><input class="form-control" name="prenom" size="30" type="text" id = "prenom"></input></td>
+       <td><span style="color:red" id="erreur_prenom"></span></td>
+       </tr>
+           
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Laboratoire de recherche</label></td>
+       <td><select class="form-control" name="laboratoire" id = "laboratoire">
        <option selected disabled="">Choisir
        <option>CREIDD
        <option>ERA
@@ -108,21 +110,38 @@
        <option>LM2S
        <option>LNIO
        <option>LOSI
-       <option>Tech-CICO</select><span style="color:red" id="erreur_laboratoire"></span><br/>
+       <option>Tech-CICO</select></td>
+       <td><span style="color:red" id="erreur_laboratoire"></span></td>
+       </tr>
        
-       <label for="label">Organisation</label> 
-       <input class ="input-sm" type="text" name="organisation" id="organisation"/><span style="color:red" id="erreur_organisation"></span><br/>
-    
-       <label for="label">Adresse email</label> 
-       <input class ="input-sm" type="email" name="email" id="email"/><span style="color:red" id="erreur_email"></span><br/>
- 
-       <label for="année">Mot de passe</label> 
-       <input class ="input-sm" type="password" name="mdp" id="mdp"/><span style="color:red" id="erreur_mdp"></span><br/>
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Organisation</label> </td>
+       <td><input class="form-control" name="organisation" size="30" type="text" id="organisation"></input></td>
+       <td><span style="color:red" id="erreur_organisation"></span></td>
+       </tr>
 
-       <label for="passagers">Retapez votre mot de passe </label> 
-       <input class ="input-sm" type="password" name="confirm_mdp" id="confirm_mdp"/><span style="color:red" id="erreur_confirm_mdp"></span><br/>
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Adresse email</label></td>
+       <td><input class="form-control" name="email" size="30" type="email" id ="email"></input></td>
+       <td><span style="color:red" id="erreur_email"></span></td>
+       </tr>
+
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Mot de passe</label></td>
+       <td><input class="form-control" name="mdp" size="30" type="password" id ="mdp"></input></td>
+       <td><span style="color:red" id="erreur_mdp"></span></td>
+       </tr>
+          
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Retapez votre mot de passe</label></td>
+       <td><input class="form-control" name="confirm_mdp" size="30" type="password" id ="confirm_mdp"></input></td>
+       <td><span style="color:red" id="erreur_confirm_mdp"></span></td>
+       </tr>
+           
+       </tbody>
+       </table>
        </p>
-       <input class ="btn-sm" type="submit" value="S'inscrire" >
+       <input class ="btn btn-success btn-lg" type="submit" value="S'inscrire" >
 </form>
        
     </div>
