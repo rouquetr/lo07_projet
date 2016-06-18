@@ -20,7 +20,63 @@
             
         }
     }
-
+    
+    if(!empty($_POST['titre'])&&!empty($_POST['auteur'])&&!empty($_POST['categorie'])&&!empty($_POST['label'])&&!empty($_POST['date'])&&!empty($_POST['lieu'])){
+        
+        $titre = mysqli_escape_string($database,$_POST['titre']);
+        
+        $verification_publication_requete= "select * from publication where titre='".$titre."' AND categorie = '".$_POST['categorie']."' AND label = '".$_POST['label'].
+                                           "' AND date = ".$_POST['date']." AND lieu = '".$_POST['lieu']."'";
+        $verification_publication_resultat = mysqli_query($database, $verification_publication_requete);
+        $verification_publication = mysqli_fetch_array($verification_publication_resultat);
+        
+        if(!$verification_publication['id_publication']){
+        
+        $auteur= explode(",",$_POST['auteur']);
+        
+        foreach($auteur as $value){
+            list($cle,$val) = explode(" ",$value);
+            $nom = $cle;
+            $prenom = $val;
+            $test_auteur_requete = "select * from chercheur where nom = '".$nom."' AND prenom = '".$prenom."'";
+            $test_auteur_resultat = mysqli_query($database, $test_auteur_requete);
+            $test_auteur = mysqli_fetch_array($test_auteur_resultat);
+            if(empty($test_auteur['nom'])){
+                $auteur_manquant[$nom] = $prenom;
+            }
+        }
+        
+        $ajout_publication_requete = "insert into publication(titre,categorie,label,date,lieu) values('".$titre."','".$_POST['categorie']."','".$_POST['label']."',".
+                             $_POST['date'].",'".$_POST['lieu']."')";
+        $ajout_publication_resultat = mysqli_query($database, $ajout_publication_requete);
+        
+        $id_publication_resultat = mysqli_query($database, $verification_publication_requete);
+        $id_publication = mysqli_fetch_array($id_publication_resultat);
+        
+        $i=0;
+        
+        if($ajout_publication_resultat){
+            foreach($auteur as $value){
+            $i++;
+            
+            list($cle,$val) = explode(" ",$value);
+            $nom = $cle;
+            $prenom = $val;
+            
+            $id_chercheur_requete = "select * from chercheur where nom='".$nom."' AND prenom='".$prenom."'";
+            $id_chercheur_resultat = mysqli_query($database, $id_chercheur_requete);
+            $id_chercheur = mysqli_fetch_array($id_chercheur_resultat);
+            
+            $ajout_publie_requete = "insert into publie values(".$id_chercheur['id_chercheur'].",".$id_publication['id_publication'].",".$i.")";
+            $ajout_publi_resultat = mysqli_query($database, $ajout_publie_requete);
+        }
+        }
+        else {
+        echo ("Erreur: ");
+        echo (mysqli_errno($database));
+        }
+        }
+    }
 ?>
 
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
@@ -73,7 +129,65 @@
                     else document.getElementById("erreur_old_mdp").innerHTML = "";
                     
                     return erreur;
-           }       
+           }
+           
+           function validation_publication(){
+               
+                    if (document.publication.titre.value=='') {
+                    document.getElementById("erreur_titre").innerHTML = " Veuillez saisir un titre.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_titre").innerHTML = "";
+                    
+                    if (document.publication.auteur.value=='') {
+                    document.getElementById("erreur_auteur").innerHTML = " Veuillez saisir un auteur.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_auteur").innerHTML = "";
+                    
+                    if (document.publication.categorie.value=='Choisir') {
+                    document.getElementById("erreur_categorie").innerHTML = " Veuillez choisir une catégorie.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_categorie").innerHTML = "";
+                    
+                    if (document.publication.label.value=='') {
+                    document.getElementById("erreur_label").innerHTML = " Veuillez saisir un label.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_label").innerHTML = "";
+                    
+                    if (document.publication.date.value=='') {
+                    document.getElementById("erreur_date").innerHTML = " Veuillez saisir une date.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_date").innerHTML = "";
+                    
+                    if (document.publication.lieu.value=='') {
+                    document.getElementById("erreur_lieu").innerHTML = " Veuillez saisir un lieu.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_lieu").innerHTML = "";
+                    
+                    return erreur;
+           }
+           
+           function ajouter_compte()
+                        {
+                                width = 600;
+                                height = 450;
+                                if(window.innerWidth)
+                                {
+                                        var left = (window.innerWidth-width)/2;
+                                        var top = (window.innerHeight-height)/2;
+                                }
+                                else
+                                {
+                                        var left = (document.body.clientWidth-width)/2;
+                                        var top = (document.body.clientHeight-height)/2;
+                                }
+                                window.open('nouveau_auteur.php','Ajouter des auteurs','menubar=no, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
+                        }
         </script>
 </head>
 
@@ -111,12 +225,11 @@
        </p>
        <input class ="btn btn-success btn-lg" type="submit" value="Changer le mot de passe" >
 </form>
-   
+   </div>
+    <div class = "container">
       <h2>Ajouter une publication</h2>
    
-       
-   
-       <form class ="form-horizontal" name ="Ajouter une publication" method="post" onsubmit="return validation(this)" action="mon_compte.php">
+       <form class ="form-horizontal" name ="publication" method="post" onsubmit="return validation_publication(this)" action="mon_compte.php">
        <table>
        <tbody>
            
@@ -124,6 +237,12 @@
        <td align="left" valign="top" width="150"><label for="label">Titre</label></td>
        <td><input class="form-control" name="titre" size="30" type="text" id ="titre"></input></td>
        <td><span style="color:red" id="erreur_titre"></span></td>
+       </tr>
+           
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Auteur(s)</label></td>
+       <td><input class="form-control" name="auteur" size="30" type="text" id ="auteur" placeholder="Nom Prénom, Nom2 Prénom2,..."></input></td>
+       <td><span style="color:red" id="erreur_auteur"></span></td>
        </tr>
            
        <tr>
@@ -143,20 +262,26 @@
        
        <tr>
        <td align="left" valign="top" width="150"><label for="label">Label</label></td>
-       <td><input class="form-control" name="titre" size="30" type="label" id ="label"></input></td>
+       <td><input class="form-control" name="label" size="30" type="label" id ="label"></input></td>
        <td><span style="color:red" id="erreur_label"></span></td>
        </tr>
        
        <tr>
        <td align="left" valign="top" width="150"><label for="label">Date</label></td>
-       <td><input class="form-control" name="date" size="30" type="date" id ="date"></input></td>
+       <td><input class="form-control" name="date" size="30" type="date" id ="date" placeholder="Année"></input></td>
        <td><span style="color:red" id="erreur_date"></span></td>
+       </tr>
+           
+       <tr>
+       <td align="left" valign="top" width="150"><label for="label">Lieu</label></td>
+       <td><input class="form-control" name="lieu" size="30" type="text" id ="lieu"></input></td>
+       <td><span style="color:red" id="erreur_lieu"></span></td>
        </tr>
            
        </tbody>
        </table>
        </p>
-       <input class ="btn btn-success btn-lg" type="submit" value="Changer le mot de passe" >
+       <input class ="btn btn-success btn-lg" type="submit" value="Ajouter une publication" >
         </form>
        
     </div>
