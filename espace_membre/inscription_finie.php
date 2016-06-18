@@ -1,6 +1,7 @@
 <?php
 
     require_once(".\database.php");
+    session_start();
     
     $verification_email_requete = "Select * from compte where '".$_POST['email']."' = email";
     
@@ -49,7 +50,6 @@
     
     if($resultat){
         echo ("Compte créé");
-        session_start();
         $session_requete = "select * from compte, chercheur where id_compte = id_chercheur AND email = '".$_POST['email']."'";
         $session_resultat = mysqli_query($database, $session_requete);
         $session = mysqli_fetch_array($session_resultat);
