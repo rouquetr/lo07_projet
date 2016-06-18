@@ -3,11 +3,24 @@
  * Code licensed under the Apache License v2.0.
  * For details, see http://www.apache.org/licenses/LICENSE-2.0.
  */
-
 body {
     overflow-x: hidden;
 }
 
+.erreur
+{
+    color:#161f29;
+    padding-left: 20px;
+}
+
+.libelle
+{
+    color: whitesmoke;
+    text-align: left;
+    valign: center;
+    width: 235px;
+    padding-right: 20px;
+}
 p {
     font-size: 20px;
 }

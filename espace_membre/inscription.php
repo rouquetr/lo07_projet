@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
     <!-- Bootstrap Core CSS - Uses Bootswatch Flatly Theme: http://bootswatch.com/flatly/ -->
@@ -78,29 +81,54 @@
            }       
         </script>
 </head>
+<!-- Navigation -->
+    <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.php">Institut Charles Delaunay</a>
+            </div>
 
-<body onload="document.inscription.reset();">
-   <div class ="container">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="../index.php"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    <body onload="document.inscription.reset();" style="background-color: #3498db">
+   <div class ="container" style="padding-top: 120px">
        
-   <h2>Inscription:</h2>
-   <form class ="form-horizontal" name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
+       <h1 style="color: whitesmoke">Inscription</h1><br><br>
+   <form  name ="inscription" method="post" onsubmit="return validation(this)" action='inscription_finie.php'>
  
        <table>
        <tbody>
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Nom</label></td>
+           <td class="libelle"><label for="label">Nom</label></td>
        <td><input class="form-control" name="nom" size="30" type="text" id = "nom"></input></td>
-       <td><span style="color:red" id="erreur_nom"></span></td>
+       <td><span class="erreur" id="erreur_nom"></span></td>
        </tr>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Prénom</label></td>
+           <td class="libelle"><label for="label">Prénom</label></td>
        <td><input class="form-control" name="prenom" size="30" type="text" id = "prenom"></input></td>
-       <td><span style="color:red" id="erreur_prenom"></span></td>
+       <td><span class="erreur" id="erreur_prenom"></span></td>
        </tr>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Laboratoire de recherche</label></td>
+       <td class="libelle"><label for="label">Laboratoire de recherche</label></td>
        <td><select class="form-control" name="laboratoire" id = "laboratoire">
        <option selected disabled="">Choisir
        <option>CREIDD
@@ -111,39 +139,58 @@
        <option>LNIO
        <option>LOSI
        <option>Tech-CICO</select></td>
-       <td><span style="color:red" id="erreur_laboratoire"></span></td>
+       <td><span class="erreur" id="erreur_laboratoire"></span></td>
        </tr>
        
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Organisation</label> </td>
+       <td class="libelle"><label for="label">Organisation</label> </td>
        <td><input class="form-control" name="organisation" size="30" type="text" id="organisation"></input></td>
-       <td><span style="color:red" id="erreur_organisation"></span></td>
+       <td><span class="erreur" id="erreur_organisation"></span></td>
        </tr>
 
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Adresse email</label></td>
+       <td class="libelle"><label for="label">Adresse email</label></td>
        <td><input class="form-control" name="email" size="30" type="email" id ="email"></input></td>
-       <td><span style="color:red" id="erreur_email"></span></td>
+       <td><span class="erreur" id="erreur_email"></span></td>
        </tr>
 
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Mot de passe</label></td>
+       <td class="libelle"><label for="label">Mot de passe</label></td>
        <td><input class="form-control" name="mdp" size="30" type="password" id ="mdp"></input></td>
-       <td><span style="color:red" id="erreur_mdp"></span></td>
+       <td><span class="erreur" id="erreur_mdp"></span></td>
        </tr>
           
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Retapez votre mot de passe</label></td>
+       <td class="libelle"><label for="label">Retapez votre mot de passe</label></td>
        <td><input class="form-control" name="confirm_mdp" size="30" type="password" id ="confirm_mdp"></input></td>
-       <td><span style="color:red" id="erreur_confirm_mdp"></span></td>
+       <td><span class="erreur" id="erreur_confirm_mdp"></span></td>
        </tr>
            
        </tbody>
        </table>
-       </p>
-       <input class ="btn btn-success btn-lg" type="submit" value="S'inscrire" >
+   </p><br>
+       <input class ="btn btn-outline btn-lg" type="submit" value="S'inscrire" >
 </form>
        
     </div>
+        
+         <!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+    <!-- Plugin JavaScript -->
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="js/classie.js"></script>
+    <script src="js/cbpAnimatedHeader.js"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script src="js/jqBootstrapValidation.js"></script>
+    <script src="js/contact_me.js"></script>
+
+    <!-- Custom Theme JavaScript -->
+    <script src="js/freelancer.js"></script>
+    
 <!-- #global --></body>
 </html>
