@@ -60,7 +60,7 @@
                         <a href="#about">Publications récentes</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#contact">Connexion</a>
+                        <a href="espace_membre/inscription.php">Connexion</a>
                     </li>
                 </ul>
             </div>
@@ -210,33 +210,25 @@
         <div class="footer-above">
             <div class="container">
                 <div class="row">
-                    <div class="footer-col col-md-4">
+                    <div class="footer-col col-md-6">
                         <h3>Nous localiser</h3>
-                        <p>Université de Technologie de Troyes<br>12 Rue Marie Curie<br>10010 Troyes, France</p>
+                        <p>Institut Charles Delaunay, UMR CNRS 6281<br>Université de Technologie de Troyes<br>12 Rue Marie Curie<br>CS 42060 - 10004 Troyes CEDEX</p>
                     </div>
-                    <div class="footer-col col-md-4">
-                        <h3>Around the Web</h3>
+                    <!--<div class="footer-col col-md-5">
+                    </div>-->
+                    <div class="footer-col col-md-6">
+                        <h3>Nous contacter</h3>
                         <ul class="list-inline">
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-facebook"></i></a>
+                                <a href="tel:0351591166" class="btn-social btn-outline"><i class="fa fa-fw fa-phone"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-google-plus"></i></a>
+                                <a href="mailto:pascal.royer@utt.fr" class="btn-social btn-outline"><i class="fa fa-fw fa-envelope"></i></a>
                             </li>
                             <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-twitter"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-linkedin"></i></a>
-                            </li>
-                            <li>
-                                <a href="#" class="btn-social btn-outline"><i class="fa fa-fw fa-dribbble"></i></a>
+                                <a target="_blank" href="http://icd.utt.fr" class="btn-social btn-outline"><i class="fa fa-fw fa-at"></i></a>
                             </li>
                         </ul>
-                    </div>
-                    <div class="footer-col col-md-4">
-                        <h3>About Freelancer</h3>
-                        <p>Freelance is a free to use, open source Bootstrap theme created by <a href="http://startbootstrap.com">Start Bootstrap</a>.</p>
                     </div>
                 </div>
             </div>
@@ -245,7 +237,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-12">
-                        Copyright &copy; Rouquet & Lefeuvre 2016
+                        Copyright &copy; Lefeuvre & Rouquet 2016
                     </div>
                 </div>
             </div>
@@ -275,7 +267,7 @@
                             <h2>CREIDD</h2>
                             <hr class="star-primary">
                             <img src="img/labs/CREIDD.png" width=400 class="img-responsive img-centered" alt="">
-                            <p>Créé en septembre 2001, le Centre de Recherches et d'Etudes Interdisciplinaires sur le Développement Durable s’est donné pour fin de concourir à la mise en oeuvre du développement durable. Il s’agit en particulier – dans une perspective à la fois critique et opérationnelle – de conduire des recherches sur certaines stratégies de découplage entre dynamisme socio-économique des sociétés humaines et croissance continue des flux de matière et d’énergie.</p>
+                            <p>Créé en septembre 2001, le Centre de Recherches et d'Etudes Interdisciplinaires sur le Développement Durable s’est donné pour fin de concourir à la mise en oeuvre du développement durable. Il s’agit en particulier de conduire des recherches sur certaines stratégies de découplage entre dynamisme socio-économique des sociétés humaines et croissance continue des flux de matière et d’énergie.</p>
                             <!--<ul class="list-inline item-details">
                                 <li>Client:
                                     <strong><a href="http://startbootstrap.com">Start Bootstrap</a>
@@ -291,7 +283,7 @@
                                 </li>
                             </ul>-->
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -315,7 +307,7 @@
                             <img src="img/labs/ERA.png" width=400 class="img-responsive img-centered" alt="">
                             <p>L’équipe « Environnement de Réseaux Autonomes » a été créée en janvier 2008. Elle a depuis développé une forte compétence dans le domaine des réseaux et de leur pilotage ainsi qu’une compétence reconnue dans les technologies multi-agents. Cette double compétence est sans conteste la force de l’équipe d’autant plus qu’elle s'appuie sur tout un ensemble d’outils de test et de simulation.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -339,7 +331,7 @@
                             <img src="img/labs/GAMMA3.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créée en 2010, l’équipe-projet GAMMA3 (commune à l’UTT et à l’INRIA) étudie et développe des algorithmes de génération automatique de maillages, des outils pour la modélisation géométrique, ainsi que des méthodologies adaptatives avancées pour la simulation numérique.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -363,7 +355,7 @@
                             <img src="img/labs/LASMIS.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Le Laboratoire des Systèmes Mécaniques et d'Ingénierie Simultanée a été créé en septembre 1994, en même temps que l'Université de Technologie de Troyes. L'objectif du LASMIS est de développer des outils d'ingénierie mécanique pour la conception et la fabrication de composants critiques pour la sécurité et la sureté de fonctionnement. </p>
                             <br/>
-                            <on type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -387,7 +379,7 @@
                             <img src="img/labs/LM2S.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Le Laboratoire de Modélisation et Sûreté des Systèmes a été créé en 1995. Il regroupe au sein d’une même équipe, des spécialistes en sûreté de fonctionnement et en surveillance des systèmes. Ce laboratoire est fortement impliqué dans le transfert de technologies, notamment avec PSA Peugeot-Citroën, Renault, Michelin, SNECMA, EDF, CEA, INERIS, …</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -411,7 +403,7 @@
                             <img src="img/labs/LNIO.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créée en 1994, l’équipe du Laboratoire de Nanotechnologie et Instrumentation Optique utilise la lumière pour étudier, observer, manipuler, structurer la matière à l’échelle nanométrique. Ses recherches trouvent une application directe dans les nano-capteurs, l’étude du vivant (membrane cellulaire)...</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -435,7 +427,7 @@
                             <img src="img/labs/LOSI.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créé en 1996, le Laboratoire d’Optimisation des Systèmes Industriels est le laboratoire de l’UTT spécialisé dans l’étude des systèmes logistiques et de production. Son objectif est de développer des outils d'aide à la décision pour améliorer ces systèmes complexes, de la conception à l'exploitation, en termes d'efficacité et de compétitivité.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>
@@ -459,7 +451,7 @@
                             <img src="img/labs/TechCICO.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créée en 1998, l’équipe Tech-CICO articule sciences humaines et sociales & sciences et techno- logies de l'information et de la communication. Les travaux de cette équipe portent sur l'analyse, la modélisation et l’instrumentation des activités coopératives.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-times"></i> Fermer</button>
+                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
                         </div>
                     </div>
                 </div>

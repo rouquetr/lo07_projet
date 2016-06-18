@@ -1,44 +1,61 @@
 <?php
 
     require_once(".\database.php");
-    $creer_compte = "insert into compte(id_compte,email,mdp) values(0,'".$_GET['email']."','".$_GET['mdp']."')";
-    $verification = "select nom, prenom, email from chercheur, compte where nom='".$_GET['nom']."' AND prenom ='".$_GET['prenom']."' AND laboratoire = '".$_GET['laboratoire'].
-                    "' AND organisation = '".$_GET['organisation']."'";
     
+    $verification_email_requete = "Select * from compte where '".$_POST['email']."' = email";
+    
+    $verification_email_resultat = mysqli_query($database,$verification_email_requete);
+    $verification_email = mysqli_fetch_array($verification_email_resultat);
+    
+    if(!$verification_email['email']){
+    
+    $verification_requete = "Select id_compte from chercheur, compte where nom='".$_POST['nom']."' AND prenom ='".$_POST['prenom']."' AND laboratoire = '".$_POST['laboratoire'].
+                    "' AND organisation = '".$_POST['organisation']."' AND id_compte = id_chercheur;";
+    
+    $verification_resultat = mysqli_query($database,$verification_requete); 
+    
+    if ($verification = mysqli_fetch_array($verification_resultat)){
+        echo ("Le compte existe déjà");
+        //=echo "verification_requete:".$verification_requete."<br/>";
+    }
+    else{
+    
+    $id_chercheur_requete = "select * from chercheur where nom='".$_POST['nom']."' AND prenom ='".$_POST['prenom']."' AND laboratoire = '".$_POST['laboratoire'].
+                    "' AND organisation = '".$_POST['organisation']."'";
+    
+    //echo "id_chercheur_requete".$id_chercheur_requete."<br/>";
+    
+    $id_chercheur_resultat = mysqli_query($database, $id_chercheur_requete);
+    
+    $id_chercheur = mysqli_fetch_array($id_chercheur_resultat);
+    
+    if(!$id_chercheur['id_chercheur']){
+        $chercheur_requete = "insert into chercheur(nom,prenom,laboratoire,organisation) values('".$_POST['nom']."','".$_POST['prenom']."','"
+                             .$_POST['laboratoire']."','".$_POST['organisation']."');";
+        
+        //echo "$chercheur_requete:".$chercheur_requete."<br/>";
+        
+        $chercheur_insertion = mysqli_query($database, $chercheur_requete);
+        $id_chercheur_resultat = mysqli_query($database, $id_chercheur_requete);
+        $id_chercheur = mysqli_fetch_array($id_chercheur_resultat);
+    }
+    
+    //printf("id_chercheur: %d <br/>",$id_chercheur['id_chercheur']);
+    
+    $creer_compte = "insert into compte(id_compte,email,mdp) values(".$id_chercheur['id_chercheur'].",'".$_POST['email']."','".$_POST['mdp']."')";    
     $resultat = mysqli_query($database, $creer_compte);
     
-    echo("? -> $creer_compte<br>\n");
+    //echo("créer compte: $creer_compte<br>\n");
     
     if($resultat){
-        echo ("Requête effectuée");
+        echo ("Compte créé");
     }
     else {
         echo ("Erreur: ");
         echo (mysqli_errno($database));
     }
-    
-    
-$erreur = ['nom'=>0,'prenom'=>0,'laboratoire'=>0,'organisation'=>0,'email'=>0,'mdp'=>0];
-
-if (!empty($_GET['tentative'])) {
-
-    foreach ($_GET as $key => $value) {
-        switch ($key) {
-            case 'nom':
-                if (empty($_GET['nom'])) $erreur['nom'] = 'La case nom est vide.';
-            case 'prenom':
-                if (empty($_GET['prenom'])) $erreur['prenom'] = 'La case prénom est vide.';
-            case 'laboratoire':
-                if (empty($_GET['laboratoire'])) $erreur['laboratoire'] = 'Veuillez choisir un laboratoire de recherche.';
-            case 'organisation':
-                if (empty($_GET['organisation'])) $erreur['organisation'] = 'La case organisation est vide.';
-            case 'email':
-                if (empty($_GET['email'])) $erreur['email'] = 'La case adresse email est vide.';
-            case 'mdp':
-                if (empty($_GET['mdp'])) $erreur['mdp'] = 'La case mot de passe est vide.';
-                if ($_GET['mdp']!=$_GET['confirm_mdp']) $erreur['mdp'] = 'les deux mots de passe sont différents.';
-        }
     }
-    
-}
+    }
+    else echo "Cette adresse e-mail est déjà utilisée";
+
 ?>
