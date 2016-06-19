@@ -15,9 +15,13 @@ if(!empty($_POST['email'])&&!empty($_POST['mdp'])){
         $connexion_requete= "select nom, prenom, email from compte, chercheur where mdp = '".$_POST['mdp']."' AND email = '".$_POST['email']."' AND id_chercheur = id_compte;";
         $connexion_resultat = mysqli_query($database, $connexion_requete);
         $connexion = mysqli_fetch_array($connexion_resultat);
+        
+        if(!empty($connexion['nom'])){
         $_SESSION['nom'] = $connexion['nom'];
         $_SESSION['prenom'] = $connexion['prenom'];
         $_SESSION['email'] = $connexion['email'];
+        }
+        else $erreur_connection = "<label for='label'>Mot de passe incorrect</label>";
         }
 ?>
 <html lang="en">
@@ -64,7 +68,7 @@ $(document).ready(function(){
 
 <body id="page-top" class="index">
     <div class="container hide" id = "connexion">
-    <?php if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email']))
+    <?php if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])){
     print('<form  name ="connexion" method="post" action="index.php">
     <tbody>
     <tr>
@@ -72,16 +76,18 @@ $(document).ready(function(){
     <td><input maxlength="30" class="form-control" name="email" size="50" type="text" id = "email"></input></td>
     </tr>
     <tr>
-    <td ><label for="label">Mot de passe:</label></td>
+    <td><label for="label">Mot de passe:</label></td>
     <td><input maxlength="20" class="form-control" name="mdp" size="50" type="password" id = "mdp"></input></td>
     </tr>
-    <tr><span class="erreur"><?php if($erreur_connection!="") echo $erreur_connection;?></span><br>
+    <tr><span class="erreur">');
+    if($erreur_connection!="") echo $erreur_connection;
+    print('</span><br>
     <td><button class ="btn btn-success btn-sm" type="submit">Connexion</button></td>
     <td><a href="espace_membre/inscription.php">
     <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Inscription</button></td></a>
     </tr> 
     </tbody>
-    </table></form>');
+    </table></form>');}
     else print('<form  name ="connexion" method="post" action="index.php"><tbody><tr>
                 <input type="hidden" name = "deconnexion" value = 1></input>
                 <a href="espace_membre/mon_compte.php">
