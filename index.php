@@ -1,6 +1,24 @@
 <!DOCTYPE html>
 <?php
 session_start();
+$erreur_connection = "";
+
+if($_POST['deconnexion']==1) {
+    session_destroy ();
+    header('Location:index.php');
+}
+
+if(!empty($_POST['email'])&&!empty($_POST['mdp'])){
+    
+        require_once("espace_membre/database.php");
+        
+        $connexion_requete= "select nom, prenom, email from compte, chercheur where mdp = '".$_POST['mdp']."' AND email = '".$_POST['email']."' AND id_chercheur = id_compte;";
+        $connexion_resultat = mysqli_query($database, $connexion_requete);
+        $connexion = mysqli_fetch_array($connexion_resultat);
+        $_SESSION['nom'] = $connexion['nom'];
+        $_SESSION['prenom'] = $connexion['prenom'];
+        $_SESSION['email'] = $connexion['email'];
+        }
 ?>
 <html lang="en">
 
@@ -35,14 +53,40 @@ session_start();
     
     <script>
 $(document).ready(function(){
-    $('[data-toggle="popover"]').popover();
+    $('#connexion_bouton').popover({
+        container:'body',
+        html: true,
+        content: $('#connexion').html()})
 });
 </script>
 
 </head>
 
 <body id="page-top" class="index">
-
+    <div class="container hide" id = "connexion">
+    <?php if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email']))
+    print('<form  name ="connexion" method="post" action="index.php">
+    <tbody>
+    <tr>
+    <td><label for="label">Email</label></td>
+    <td><input maxlength="30" class="form-control" name="email" size="50" type="text" id = "email"></input></td>
+    </tr>
+    <tr>
+    <td ><label for="label">Mot de passe:</label></td>
+    <td><input maxlength="20" class="form-control" name="mdp" size="50" type="password" id = "mdp"></input></td>
+    </tr>
+    <tr><span class="erreur"><?php if($erreur_connection!="") echo $erreur_connection;?></span><br>
+    <td><button class ="btn btn-success btn-sm" type="submit">Connexion</button></td>
+    <td><a href="espace_membre/inscription.php">
+    <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Inscription</button></td></a>
+    </tr> 
+    </tbody>
+    </table></form>');
+    else print('<form  name ="connexion" method="post" action="index.php"><tbody><tr>
+                <input type="hidden" name = "deconnexion" value = 1></input>
+                <a href="espace_membre/mon_compte.php">
+                <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Mon Compte</button></td></a></tr>
+                <tr><button class ="btn btn-success btn-sm" type="submit">Déconnexion</button></tr>'); ?></div>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">
@@ -69,20 +113,10 @@ $(document).ready(function(){
                     <li class="page-scroll">
                         <a href="#about">Publications récentes</a>
                     </li>
-                    <li class="page-scroll">
-                        <a data-html="true" href="#" data-toggle="popover" data-content='<table>
-                            <tbody>
-                            <tr>
-                                <td ><label for="label">Email</label></td>
-                            <td><input class="form-control" name="email" size="50" type="text" id = "email"></input></td>
-                            </tr>
-                            <tr>
-                                <td ><label for="label">Mot de passe:</label></td>
-                            <td><input class="form-control" name="mdp" size="50" type="password" id = "mdp"></input></td>
-                            </tr>
-                            
-                            </tbody>
-                            </table>   '>Connexion</a>
+                    <li>
+                        <a href="#" data-placement="bottom" id="connexion_bouton">
+                        <?php if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])) echo "Connexion";
+                              else echo "Bonjour ".$_SESSION['prenom'];?></a>
                     </li>
                 </ul>
             </div>

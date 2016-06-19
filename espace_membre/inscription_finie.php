@@ -56,6 +56,7 @@
         $_SESSION['nom'] = $session['nom'];
         $_SESSION['prenom'] = $session['prenom'];
         $_SESSION['email'] = $session['email'];
+        header('Location:../index.php');
     }
     else {
         echo ("Erreur: ");
@@ -63,6 +64,8 @@
     }
     }
     }
-    else echo "Cette adresse e-mail est déjà utilisée";
+    else {
+        header('Location:inscription.php?email=error');
+    }
 
 ?>

@@ -1,5 +1,6 @@
 <?php
 session_start();
+if(!empty($_SESSION['nom'])&&!empty($_SESSION['prenom'])&&!empty($_SESSION['email'])) header('Location:../index.php');
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
@@ -117,13 +118,13 @@ session_start();
        <tbody>
        <tr>
            <td class="libelle"><label for="label">Nom</label></td>
-       <td><input class="form-control" name="nom" size="30" type="text" id = "nom"></input></td>
+       <td><input maxlength="30" class="form-control" name="nom" size="30" type="text" id = "nom"></input></td>
        <td><span class="erreur" id="erreur_nom"></span></td>
        </tr>
            
        <tr>
            <td class="libelle"><label for="label">Prénom</label></td>
-       <td><input class="form-control" name="prenom" size="30" type="text" id = "prenom"></input></td>
+       <td><input maxlength="30" class="form-control" name="prenom" size="30" type="text" id = "prenom"></input></td>
        <td><span class="erreur" id="erreur_prenom"></span></td>
        </tr>
            
@@ -144,25 +145,25 @@ session_start();
        
        <tr>
        <td class="libelle"><label for="label">Organisation</label> </td>
-       <td><input class="form-control" name="organisation" size="30" type="text" id="organisation"></input></td>
+       <td><input maxlength="20" class="form-control" name="organisation" size="30" type="text" id="organisation"></input></td>
        <td><span class="erreur" id="erreur_organisation"></span></td>
        </tr>
 
        <tr>
        <td class="libelle"><label for="label">Adresse email</label></td>
-       <td><input class="form-control" name="email" size="30" type="email" id ="email"></input></td>
-       <td><span class="erreur" id="erreur_email"></span></td>
+       <td><input maxlength="30" class="form-control" name="email" size="30" type="email" id ="email"></input></td>
+       <td><span class="erreur" id="erreur_email"><?php if(isset($_GET['email'])) echo "Cette adresse email est déjà utilisée";?></span></td>
        </tr>
 
        <tr>
        <td class="libelle"><label for="label">Mot de passe</label></td>
-       <td><input class="form-control" name="mdp" size="30" type="password" id ="mdp"></input></td>
+       <td><input maxlength="20" class="form-control" name="mdp" size="30" type="password" id ="mdp"></input></td>
        <td><span class="erreur" id="erreur_mdp"></span></td>
        </tr>
           
        <tr>
        <td class="libelle"><label for="label">Retapez votre mot de passe</label></td>
-       <td><input class="form-control" name="confirm_mdp" size="30" type="password" id ="confirm_mdp"></input></td>
+       <td><input maxlength="20" class="form-control" name="confirm_mdp" size="30" type="password" id ="confirm_mdp"></input></td>
        <td><span class="erreur" id="erreur_confirm_mdp"></span></td>
        </tr>
            

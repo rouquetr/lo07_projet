@@ -2,6 +2,8 @@
     require_once(".\database.php");
     session_start();
     
+    if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])) header('Location:../index.php');
+    
     $erreur = "";
     if(!empty($_POST['old_mdp'])&&!empty($_POST['new_mdp'])&&!empty($_POST['confirm_new_mdp'])){
         $test_mdp_requete= "select * from compte where mdp = '".$_POST['old_mdp']."' AND email = '".$_SESSION['email']."';";
@@ -196,63 +198,86 @@
                         }
         </script>
 </head>
+       <nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.php">Institut Charles Delaunay</a>
+            </div>
 
-<body onload="document.mon_compte.reset();">
-   <div class ="container">
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="../index.php"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+    </nav>
+    
+<body onload="document.inscription.reset();" style="background-color: #3498db">
+   <div class ="container" style="padding-top: 140px">
        
-   <h2>Mon compte</h2>
-   
-       
+   <h1 style="color: whitesmoke">Mon Compte</h1><br><br>
    
        <form class ="form-horizontal" name ="mon_compte" method="post" onsubmit="return validation_mdp(this)" action="mon_compte.php">
        <table>
        <tbody>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Mot de passe actuel</label></td>
-       <td><input class="form-control" name="old_mdp" size="30" type="password" id ="old_mdp"></input></td>
-       <td><span style="color:red" id="erreur_old_mdp"><?php echo $erreur?></span></td>
+       <td class="libelle"><label for="label">Mot de passe actuel</label></td>
+       <td><input maxlength="20" class="form-control" name="old_mdp" size="30" type="password" id ="old_mdp"></input></td>
+       <td><span class="erreur" id="erreur_old_mdp"><?php echo $erreur?></span></td>
        </tr>           
        
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Nouveau mot de passe</label></td>
-       <td><input class="form-control" name="new_mdp" size="30" type="password" id ="new_mdp"></input></td>
-       <td><span style="color:red" id="erreur_new_mdp"></span></td>
+       <td class="libelle"><label for="label">Nouveau mot de passe</label></td>
+       <td><input maxlength="20" class="form-control" name="new_mdp" size="30" type="password" id ="new_mdp"></input></td>
+       <td><span class="erreur" id="erreur_new_mdp"></span></td>
        </tr>
           
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Confirmez</label></td>
-       <td><input class="form-control" name="confirm_new_mdp" size="30" type="password" id ="confirm_new_mdp"></input></td>
-       <td><span style="color:red" id="erreur_confirm_new_mdp"></span></td>
+       <td class="libelle"><label for="label">Confirmez</label></td>
+       <td><input maxlength="20" class="form-control" name="confirm_new_mdp" size="30" type="password" id ="confirm_new_mdp"></input></td>
+       <td><span class="erreur" id="erreur_confirm_new_mdp"></span></td>
        </tr>
            
        </tbody>
        </table>
        </p>
-       <input class ="btn btn-success btn-lg" type="submit" value="Changer le mot de passe" >
+       <input class ="btn btn-outline btn-lg" type="submit" value="Changer le mot de passe" >
 </form>
    </div>
     <div class = "container">
-      <h2>Ajouter une publication</h2>
+      <h1 style="color: whitesmoke">Ajouter une publication</h1><br><br>
    
        <form class ="form-horizontal" name ="publication" method="post" onsubmit="return validation_publication(this)" action="mon_compte.php">
        <table>
        <tbody>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Titre</label></td>
+       <td class="libelle"><label for="label">Titre</label></td>
        <td><input class="form-control" name="titre" size="30" type="text" id ="titre"></input></td>
-       <td><span style="color:red" id="erreur_titre"></span></td>
+       <td><span class="erreur" id="erreur_titre"></span></td>
        </tr>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Auteur(s)</label></td>
+       <td class="libelle"><label for="label">Auteur(s)</label></td>
        <td><input class="form-control" name="auteur" size="30" type="text" id ="auteur" placeholder="Nom Prénom, Nom2 Prénom2,..."></input></td>
-       <td><span style="color:red" id="erreur_auteur"></span></td>
+       <td><span class="erreur" id="erreur_auteur"></span></td>
        </tr>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Categorie</label></td>
+       <td class="libelle"><label for="label">Categorie</label></td>
        <td><select class="form-control" name="categorie" id = "categorie">
        <option selected disabled="">Choisir
        <option>RI
@@ -263,41 +288,41 @@
        <option>TD
        <option>BV
        <option>AP</select></td>
-       <td><span style="color:red" id="erreur_categorie"></span></td>
+       <td><span class="erreur" id="erreur_categorie"></span></td>
        </tr>
            
         <tr>
-       <td align="left" valign="top" width="150"><label for="label">Type</label></td>
+       <td class="libelle"><label for="label">Type</label></td>
        <td><select class="form-control" name="type" id = "type">
        <option selected disabled="">Choisir
        <option>Conférence
        <option>Revue
        <option>Ouvrage</select></td>
-       <td><span style="color:red" id="erreur_type"></span></td>
+       <td><span class="erreur" id="erreur_type"></span></td>
        </tr>
        
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Label</label></td>
+       <td class="libelle"><label for="label">Label</label></td>
        <td><input class="form-control" name="label" size="30" type="label" id ="label"></input></td>
-       <td><span style="color:red" id="erreur_label"></span></td>
+       <td><span class="erreur" id="erreur_label"></span></td>
        </tr>
        
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Date</label></td>
+       <td class="libelle"><label for="label">Date</label></td>
        <td><input class="form-control" name="date" size="30" type="date" id ="date" placeholder="Année"></input></td>
-       <td><span style="color:red" id="erreur_date"></span></td>
+       <td><span class="erreur" id="erreur_date"></span></td>
        </tr>
            
        <tr>
-       <td align="left" valign="top" width="150"><label for="label">Lieu</label></td>
+       <td class="libelle"><label for="label">Lieu</label></td>
        <td><input class="form-control" name="lieu" size="30" type="text" id ="lieu"></input></td>
-       <td><span style="color:red" id="erreur_lieu"></span></td>
+       <td><span class="erreur" id="erreur_lieu"></span></td>
        </tr>
            
        </tbody>
        </table>
        </p>
-       <input class ="btn btn-success btn-lg" type="submit" value="Ajouter une publication" >
+       <input class ="btn btn-outline btn-lg" type="submit" value="Ajouter une publication" >
         </form>
        
     </div>
