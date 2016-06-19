@@ -21,12 +21,12 @@
         }
     }
     
-    if(!empty($_POST['titre'])&&!empty($_POST['auteur'])&&!empty($_POST['categorie'])&&!empty($_POST['label'])&&!empty($_POST['date'])&&!empty($_POST['lieu'])){
+    if(!empty($_POST['titre'])&&!empty($_POST['auteur'])&&!empty($_POST['categorie'])&&!empty($_POST['label'])&&!empty($_POST['date'])&&!empty($_POST['lieu']&&!empty($_POST['type']))){
         
         $titre = mysqli_escape_string($database,$_POST['titre']);
         
         $verification_publication_requete= "select * from publication where titre='".$titre."' AND categorie = '".$_POST['categorie']."' AND label = '".$_POST['label'].
-                                           "' AND date = ".$_POST['date']." AND lieu = '".$_POST['lieu']."'";
+                                           "' AND date = ".$_POST['date']." AND lieu = '".$_POST['lieu']."' AND type = '".$_POST['type']."'";
         $verification_publication_resultat = mysqli_query($database, $verification_publication_requete);
         $verification_publication = mysqli_fetch_array($verification_publication_resultat);
         
@@ -46,8 +46,8 @@
             }
         }
         
-        $ajout_publication_requete = "insert into publication(titre,categorie,label,date,lieu) values('".$titre."','".$_POST['categorie']."','".$_POST['label']."',".
-                             $_POST['date'].",'".$_POST['lieu']."')";
+        $ajout_publication_requete = "insert into publication(titre,categorie,label,date,lieu,type) values('".$titre."','".$_POST['categorie']."','".$_POST['label']."',".
+                             $_POST['date'].",'".$_POST['lieu']."','".$_POST['type']."')";
         $ajout_publication_resultat = mysqli_query($database, $ajout_publication_requete);
         
         $id_publication_resultat = mysqli_query($database, $verification_publication_requete);
@@ -150,6 +150,12 @@
                     erreur = false;
                     }
                     else document.getElementById("erreur_categorie").innerHTML = "";
+                    
+                    if (document.publication.type.value=='Choisir') {
+                    document.getElementById("erreur_type").innerHTML = " Veuillez choisir un type.";
+                    erreur = false;
+                    }
+                    else document.getElementById("erreur_type").innerHTML = "";
                     
                     if (document.publication.label.value=='') {
                     document.getElementById("erreur_label").innerHTML = " Veuillez saisir un label.";
@@ -258,6 +264,16 @@
        <option>BV
        <option>AP</select></td>
        <td><span style="color:red" id="erreur_categorie"></span></td>
+       </tr>
+           
+        <tr>
+       <td align="left" valign="top" width="150"><label for="label">Type</label></td>
+       <td><select class="form-control" name="type" id = "type">
+       <option selected disabled="">Choisir
+       <option>Conférence
+       <option>Revue
+       <option>Ouvrage</select></td>
+       <td><span style="color:red" id="erreur_type"></span></td>
        </tr>
        
        <tr>

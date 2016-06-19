@@ -19,6 +19,7 @@ session_start();
 
     <!-- Custom CSS -->
     <link href="css/freelancer.css" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.2/jquery.min.js"></script>
 
     <!-- Custom Fonts -->
     <link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -31,6 +32,12 @@ session_start();
         <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
+    
+    <script>
+$(document).ready(function(){
+    $('[data-toggle="popover"]').popover();
+});
+</script>
 
 </head>
 
@@ -63,7 +70,19 @@ session_start();
                         <a href="#about">Publications récentes</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="espace_membre/inscription.php">Connexion</a>
+                        <a data-html="true" href="#" data-toggle="popover" data-content='<table>
+                            <tbody>
+                            <tr>
+                                <td ><label for="label">Email</label></td>
+                            <td><input class="form-control" name="email" size="50" type="text" id = "email"></input></td>
+                            </tr>
+                            <tr>
+                                <td ><label for="label">Mot de passe:</label></td>
+                            <td><input class="form-control" name="mdp" size="50" type="password" id = "mdp"></input></td>
+                            </tr>
+                            
+                            </tbody>
+                            </table>   '>Connexion</a>
                     </li>
                 </ul>
             </div>
