@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- Généré le :  Dim 12 Juin 2016 à 17:44
+-- GÃ©nÃ©rÃ© le :  Dim 19 Juin 2016 Ã  23:31
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Base de données :  `projet_lo07`
+-- Base de donnÃ©es :  `projet_lo07`
 --
 
 -- --------------------------------------------------------
@@ -42,8 +42,8 @@ CREATE TABLE IF NOT EXISTS `chercheur` (
 
 INSERT INTO `chercheur` (`id_chercheur`, `nom`, `prenom`, `laboratoire`, `organisation`) VALUES
 (0, 'admin', 'admin', '', ''),
-(1, 'Raphaël', 'Rouquet', 'LNIO', ''),
-(2, 'Lefeuvre', 'Clément', 'LNIO', '');
+(1, 'RaphaÃ«l', 'Rouquet', 'LNIO', ''),
+(2, 'Lefeuvre', 'ClÃ©ment', 'LNIO', '');
 
 -- --------------------------------------------------------
 
@@ -76,11 +76,12 @@ INSERT INTO `compte` (`id_compte`, `email`, `mdp`, `admin`) VALUES
 DROP TABLE IF EXISTS `publication`;
 CREATE TABLE IF NOT EXISTS `publication` (
   `id_publication` int(11) NOT NULL AUTO_INCREMENT,
-  `titre` varchar(100) DEFAULT NULL,
+  `titre` tinytext,
   `categorie` varchar(4) DEFAULT NULL,
   `label` varchar(20) DEFAULT NULL,
   `date` year(4) DEFAULT NULL,
   `lieu` varchar(100) DEFAULT NULL,
+  `type` varchar(15) NOT NULL,
   PRIMARY KEY (`id_publication`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
 
@@ -88,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `publication` (
 -- Contenu de la table `publication`
 --
 
-INSERT INTO `publication` (`id_publication`, `titre`, `categorie`, `label`, `date`, `lieu`) VALUES
-(1, 'Essai n°1', 'AP', NULL, 2016, NULL);
+INSERT INTO `publication` (`id_publication`, `titre`, `categorie`, `label`, `date`, `lieu`, `type`) VALUES
+(1, 'Essai nÂ°1', 'AP', NULL, 2016, NULL, '');
 
 -- --------------------------------------------------------
 
@@ -101,6 +102,7 @@ DROP TABLE IF EXISTS `publie`;
 CREATE TABLE IF NOT EXISTS `publie` (
   `id_chercheur` int(11) NOT NULL,
   `id_publication` int(11) NOT NULL,
+  `ordre` int(11) NOT NULL,
   PRIMARY KEY (`id_chercheur`,`id_publication`),
   KEY `id_publication` (`id_publication`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -109,11 +111,11 @@ CREATE TABLE IF NOT EXISTS `publie` (
 -- Contenu de la table `publie`
 --
 
-INSERT INTO `publie` (`id_chercheur`, `id_publication`) VALUES
-(1, 1);
+INSERT INTO `publie` (`id_chercheur`, `id_publication`, `ordre`) VALUES
+(1, 1, 1);
 
 --
--- Contraintes pour les tables exportées
+-- Contraintes pour les tables exportÃ©es
 --
 
 --
