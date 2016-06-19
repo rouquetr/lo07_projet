@@ -2,7 +2,14 @@
     require_once(".\database.php");
     session_start();
     
+    $message_mdp="";
+    $chaine="";
+    
     if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])) header('Location:../index.php');
+    
+    $informations_requete  = "select * from chercheur, compte where id_compte = id_chercheur AND email = '".$_SESSION['email']."'";
+    $informations_resultat = mysqli_query($database, $informations_requete);
+    $informations = mysqli_fetch_array($informations_resultat);
     
     $erreur = "";
     if(!empty($_POST['old_mdp'])&&!empty($_POST['new_mdp'])&&!empty($_POST['confirm_new_mdp'])){
@@ -14,7 +21,7 @@
             $changer_mdp_requete = "update compte set mdp = '".$_POST['new_mdp']."' where id_compte =".$test_mdp['id_compte'].";";
             $test_mdp_resultat = mysqli_query($database, $changer_mdp_requete);
             
-            if ($test_mdp_resultat)echo "Le mot de passe a bien été changé";
+            if ($test_mdp_resultat)$message_mdp = "Le mot de passe a bien été changé";
             else {
                   echo ("Erreur: ");
                   echo (mysqli_errno($database));
@@ -29,6 +36,7 @@
         
         $verification_publication_requete= "select * from publication where titre='".$titre."' AND categorie = '".$_POST['categorie']."' AND label = '".$_POST['label'].
                                            "' AND date = ".$_POST['date']." AND lieu = '".$_POST['lieu']."' AND type = '".$_POST['type']."'";
+        echo $verification_publication_requete;
         $verification_publication_resultat = mysqli_query($database, $verification_publication_requete);
         $verification_publication = mysqli_fetch_array($verification_publication_resultat);
         
@@ -45,9 +53,12 @@
             $test_auteur = mysqli_fetch_array($test_auteur_resultat);
             if(empty($test_auteur['nom'])){
                 $auteur_manquant[$nom] = $prenom;
+            if ($chaine = "")$chaine += $nom."=".$prenom;
+            else $chaine += "&".$nom."=".$prenom;
             }
         }
         
+        if ($chaine=""){
         $ajout_publication_requete = "insert into publication(titre,categorie,label,date,lieu,type) values('".$titre."','".$_POST['categorie']."','".$_POST['label']."',".
                              $_POST['date'].",'".$_POST['lieu']."','".$_POST['type']."')";
         $ajout_publication_resultat = mysqli_query($database, $ajout_publication_requete);
@@ -78,6 +89,7 @@
         echo (mysqli_errno($database));
         }
         }
+        }
     }
 ?>
 
@@ -102,7 +114,7 @@
             
            function validation_mdp(){
                
-                    if (document.mon_compte.new_mdp.value=='') {
+                    if (document.changer_mdp.new_mdp.value=='') {
                     document.getElementById("erreur_new_mdp").innerHTML = " Veuillez saisir votre nouveau mot de passe.";
                     document.getElementById("erreur_old_mdp").innerHTML = "";
                     document.getElementById("erreur_confirm_new_mdp").innerHTML = "";
@@ -110,19 +122,19 @@
                     }
                     else document.getElementById("erreur_new_mdp").innerHTML = "";
                     
-                    if (document.mon_compte.new_mdp.value!==''){
-                    if (document.mon_compte.confirm_new_mdp.value=='') {
+                    if (document.changer_mdp.new_mdp.value!==''){
+                    if (document.changer_mdp.confirm_new_mdp.value=='') {
                     document.getElementById("erreur_confirm_new_mdp").innerHTML = " Veuillez confirmer votre nouveau mot de passe.";
                     erreur = false;
                     }
-                    else if (document.mon_compte.new_mdp.value!==document.mon_compte.confirm_new_mdp.value) {
+                    else if (document.changer_mdp.new_mdp.value!==document.changer_mdp.confirm_new_mdp.value) {
                     document.getElementById("erreur_confirm_new_mdp").innerHTML = " Les nouveaux mots de passe ne sont pas identiques.";
                     erreur = false;
                     }
                     else document.getElementById("erreur_confirm_new_mdp").innerHTML = "";
                     }
                     
-                    if (document.mon_compte.old_mdp.value=='') {
+                    if (document.changer_mdp.old_mdp.value=='') {
                     document.getElementById("erreur_old_mdp").innerHTML = " Veuillez saisir votre ancien mot de passe.";
                     document.getElementById("erreur_new_mdp").innerHTML = "";
                     document.getElementById("erreur_confirm_new_mdp").innerHTML = "";
@@ -180,10 +192,10 @@
                     return erreur;
            }
            
-           function ajouter_compte()
+           function ajouter_compte(var chaine)
                         {
                                 width = 600;
-                                height = 450;
+                                height = 500;
                                 if(window.innerWidth)
                                 {
                                         var left = (window.innerWidth-width)/2;
@@ -194,44 +206,56 @@
                                         var left = (document.body.clientWidth-width)/2;
                                         var top = (document.body.clientHeight-height)/2;
                                 }
-                                window.open('nouveau_auteur.php','Ajouter des auteurs','menubar=no, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
+                                window.open('nouveau_auteur.php?'+chaine,'Ajouter des auteurs','menubar=no, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
                         }
         </script>
 </head>
-       <nav class="navbar navbar-default navbar-fixed-top">
-        <div class="container">
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <div class="navbar-header page-scroll">
-                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="../index.php">Institut Charles Delaunay</a>
-            </div>
-
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="../index.php"></a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.navbar-collapse -->
-        </div>
-        <!-- /.container-fluid -->
-    </nav>
+      
     
-<body onload="document.inscription.reset();" style="background-color: #3498db">
+<body onload="document.changer_mdp.reset(); document.publication.reset();" style="background-color: #3498db">
    <div class ="container" style="padding-top: 140px">
        
-   <h1 style="color: whitesmoke">Mon Compte</h1><br><br>
-   
-       <form class ="form-horizontal" name ="mon_compte" method="post" onsubmit="return validation_mdp(this)" action="mon_compte.php">
+       <h2 style="color: whitesmoke">Informations personnelles</h1><br>
+               
        <table>
        <tbody>
+           
+       <tr>
+       <td class="libelle"><label for="label">Nom</label></td>
+       <td class="libelle"><label for="label"><?php echo $informations['nom'];?></label></td>
+       </tr>
+           
+       <tr>
+       <td class="libelle"><label for="label">Prénom</label></td>
+       <td class="libelle"><label for="label"><?php echo $informations['prenom'];?></label></td>
+       </tr>
+           
+       <tr>
+       <td class="libelle"><label for="label">Adresse email</label></td>
+       <td class="libelle"><label for="label"><?php echo $informations['email'];?></label></td>
+       </tr>
+           
+       <tr>
+       <td class="libelle"><label for="label">Laboratoire</label></td>
+       <td class="libelle"><label for="label"><?php echo $informations['laboratoire'];?></label></td>
+       </tr>
+           
+       <tr>
+       <td class="libelle"><label for="label">Organisation</label></td>
+       <td class="libelle"><label for="label"><?php echo $informations['organisation'];?></label></td>
+       </tr>
+           
+       </tbody>
+       </table></div>
+           
+       <div class ="container">
+       
+       <h2 style="color: whitesmoke">Changer de mot de passe</h1><br>
+           
+       <table>
+       <tbody>
+           
+       <form class ="form-horizontal" name="changer_mdp" method="post" onsubmit="return validation_mdp(this)" action="mon_compte.php">
            
        <tr>
        <td class="libelle"><label for="label">Mot de passe actuel</label></td>
@@ -250,7 +274,7 @@
        <td><input maxlength="20" class="form-control" name="confirm_new_mdp" size="30" type="password" id ="confirm_new_mdp"></input></td>
        <td><span class="erreur" id="erreur_confirm_new_mdp"></span></td>
        </tr>
-           
+       <label for="label"><?php if($message_mdp!="") echo $message_mdp;?></label>
        </tbody>
        </table>
        </p>
@@ -258,7 +282,7 @@
 </form>
    </div>
     <div class = "container">
-      <h1 style="color: whitesmoke">Ajouter une publication</h1><br><br>
+      <h2 style="color: whitesmoke">Ajouter une publication</h1><br><br>
    
        <form class ="form-horizontal" name ="publication" method="post" onsubmit="return validation_publication(this)" action="mon_compte.php">
        <table>
