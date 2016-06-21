@@ -2,11 +2,11 @@
 <?php
 session_start();
 $erreur_connection = "";
-
+if(isset($_POST['deconnexion'])){
 if($_POST['deconnexion']==1) {
     session_destroy ();
     header('Location:index.php');
-}
+}}
 
 if(!empty($_POST['email'])&&!empty($_POST['mdp'])){
     

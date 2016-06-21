@@ -3,8 +3,8 @@
     session_start();
     
     $message_mdp="";
-    $chaine="";
-    
+    $message_publication="";
+
     if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])) header('Location:../index.php');
     
     $informations_requete  = "select * from chercheur, compte where id_compte = id_chercheur AND email = '".$_SESSION['email']."'";
@@ -36,15 +36,16 @@
         
         $verification_publication_requete= "select * from publication where titre='".$titre."' AND categorie = '".$_POST['categorie']."' AND label = '".$_POST['label'].
                                            "' AND date = ".$_POST['date']." AND lieu = '".$_POST['lieu']."' AND type = '".$_POST['type']."'";
-        echo $verification_publication_requete;
         $verification_publication_resultat = mysqli_query($database, $verification_publication_requete);
         $verification_publication = mysqli_fetch_array($verification_publication_resultat);
         
         if(!$verification_publication['id_publication']){
         
         $auteur= explode(",",$_POST['auteur']);
+        $auteur_manquant = array();
         
         foreach($auteur as $value){
+            $value = ltrim($value);
             list($cle,$val) = explode(" ",$value);
             $nom = $cle;
             $prenom = $val;
@@ -53,12 +54,16 @@
             $test_auteur = mysqli_fetch_array($test_auteur_resultat);
             if(empty($test_auteur['nom'])){
                 $auteur_manquant[$nom] = $prenom;
-            if ($chaine = "")$chaine += $nom."=".$prenom;
-            else $chaine += "&".$nom."=".$prenom;
             }
         }
         
-        if ($chaine=""){
+        foreach($auteur_manquant as $key => $value) {
+            if(!isset($chaine)) $chaine = $key."=".$value;
+            else $chaine .=  "&".$key."=".$value;
+        }
+        
+        if (!isset($chaine)){
+        $message_publication ='La publication a bien été ajoutée';
         $ajout_publication_requete = "insert into publication(titre,categorie,label,date,lieu,type) values('".$titre."','".$_POST['categorie']."','".$_POST['label']."',".
                              $_POST['date'].",'".$_POST['lieu']."','".$_POST['type']."')";
         $ajout_publication_resultat = mysqli_query($database, $ajout_publication_requete);
@@ -72,6 +77,7 @@
             foreach($auteur as $value){
             $i++;
             
+            $value = ltrim($value);
             list($cle,$val) = explode(" ",$value);
             $nom = $cle;
             $prenom = $val;
@@ -83,10 +89,6 @@
             $ajout_publie_requete = "insert into publie values(".$id_chercheur['id_chercheur'].",".$id_publication['id_publication'].",".$i.")";
             $ajout_publi_resultat = mysqli_query($database, $ajout_publie_requete);
         }
-        }
-        else {
-        echo ("Erreur: ");
-        echo (mysqli_errno($database));
         }
         }
         }
@@ -192,7 +194,7 @@
                     return erreur;
            }
            
-           function ajouter_compte(var chaine)
+           function ajouter_compte()
                         {
                                 width = 600;
                                 height = 500;
@@ -206,11 +208,40 @@
                                         var left = (document.body.clientWidth-width)/2;
                                         var top = (document.body.clientHeight-height)/2;
                                 }
-                                window.open('nouveau_auteur.php?'+chaine,'Ajouter des auteurs','menubar=no, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
-                        }
+                                window.open('nouveau_auteur.php?<?php echo $chaine;?>','Ajouter des auteurs','menubar=no, scrollbars=yes, top='+top+', left='+left+', width='+width+', height='+height+'');
+                            }
+                            
+            <?php if (isset($chaine)) echo "ajouter_compte();";?>
         </script>
 </head>
-      
+
+ 
+<nav class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header page-scroll">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="../index.php">Institut Charles Delaunay</a>
+            </div>
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="hidden">
+                        <a href="../index.php"></a>
+                    </li>
+                </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container-fluid -->
+</nav>  
+    
     
 <body onload="document.changer_mdp.reset(); document.publication.reset();" style="background-color: #3498db">
    <div class ="container" style="padding-top: 140px">
@@ -290,20 +321,20 @@
            
        <tr>
        <td class="libelle"><label for="label">Titre</label></td>
-       <td><input class="form-control" name="titre" size="30" type="text" id ="titre"></input></td>
+       <td><input class="form-control" name="titre" size="30" type="text" id ="titre" <?php if(isset($chaine))echo'value="'.$_POST['titre'].'"';?>></input></td>
        <td><span class="erreur" id="erreur_titre"></span></td>
        </tr>
            
        <tr>
        <td class="libelle"><label for="label">Auteur(s)</label></td>
-       <td><input class="form-control" name="auteur" size="30" type="text" id ="auteur" placeholder="Nom Prénom, Nom2 Prénom2,..."></input></td>
+       <td><input class="form-control" name="auteur" size="30" type="text" id ="auteur" placeholder="Nom Prénom, Nom2 Prénom2,..." <?php if(isset($chaine))echo'value="'.$_POST['auteur'].'"';?>></input></td>
        <td><span class="erreur" id="erreur_auteur"></span></td>
        </tr>
            
        <tr>
        <td class="libelle"><label for="label">Categorie</label></td>
-       <td><select class="form-control" name="categorie" id = "categorie">
-       <option selected disabled="">Choisir
+       <td><select class="form-control" name="categorie" id = "categorie" <?php if(isset($chaine))echo'value="'.$_POST['categorie'].'"';?>>
+       <option <?php if(!isset($chaine)) echo "selected";?> disabled="">Choisir
        <option>RI
        <option>CI
        <option>RF
@@ -317,8 +348,8 @@
            
         <tr>
        <td class="libelle"><label for="label">Type</label></td>
-       <td><select class="form-control" name="type" id = "type">
-       <option selected disabled="">Choisir
+       <td><select class="form-control" name="type" id = "type" <?php if(isset($chaine))echo'value="'.$_POST['type'].'"';?>>
+       <option <?php if(!isset($chaine)) echo "selected";?> disabled="">Choisir
        <option>Conférence
        <option>Revue
        <option>Ouvrage</select></td>
@@ -327,22 +358,22 @@
        
        <tr>
        <td class="libelle"><label for="label">Label</label></td>
-       <td><input class="form-control" name="label" size="30" type="label" id ="label"></input></td>
+       <td><input class="form-control" name="label" size="30" type="label" id ="label" <?php if(isset($chaine))echo'value="'.$_POST['label'].'"';?>></input></td>
        <td><span class="erreur" id="erreur_label"></span></td>
        </tr>
        
        <tr>
        <td class="libelle"><label for="label">Date</label></td>
-       <td><input class="form-control" name="date" size="30" type="date" id ="date" placeholder="Année"></input></td>
+       <td><input class="form-control" name="date" size="30" type="date" id ="date" placeholder="Année" <?php if(isset($chaine))echo'value="'.$_POST['date'].'"';?>></input></td>
        <td><span class="erreur" id="erreur_date"></span></td>
        </tr>
            
        <tr>
        <td class="libelle"><label for="label">Lieu</label></td>
-       <td><input class="form-control" name="lieu" size="30" type="text" id ="lieu"></input></td>
+       <td><input class="form-control" name="lieu" size="30" type="text" id ="lieu" <?php if(isset($chaine))echo'value="'.$_POST['lieu'].'"';?>></input></td>
        <td><span class="erreur" id="erreur_lieu"></span></td>
        </tr>
-           
+       <label for="label"><?php if($message_publication!="") echo $message_publication;?></label>    
        </tbody>
        </table>
        </p>

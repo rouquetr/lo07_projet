@@ -1,5 +1,39 @@
 <?php
 session_start();
+require_once(".\database.php");
+$erreur = array();
+
+$auteur_ajoute = 0;
+if(isset($_POST['nombre_auteur'])){
+for($i=1;$i<$_POST['nombre_auteur'];$i++){
+
+$case_nom = 'nom'.$i;
+$case_prenom = 'prenom'.$i;
+$case_laboratoire = 'laboratoire'.$i;
+$case_organisation = 'organisation'.$i;
+
+if(empty($_POST[$case_nom])) $erreur[$case_nom] = "Veuillez saisir le nom de l'auteur.";
+if(empty($_POST[$case_prenom])) $erreur[$case_prenom] = "Veuillez saisir le prénom de l'auteur.";
+if(empty($_POST[$case_laboratoire])) $erreur[$case_laboratoire] = "Veuillez chosir un laboratoire de recherche.";
+if(empty($_POST[$case_organisation])) $erreur[$case_organisation] = "Veuillez saisir votre organisation.";
+
+
+if(!empty($_POST[$case_nom])&&!empty($_POST[$case_prenom])&&!empty($_POST[$case_laboratoire])&&!empty($_POST[$case_organisation])){
+
+$test_auteur_requete = 'Select * from chercheur where nom = "'.$_POST[$case_nom].'" and prenom ="'.$_POST[$case_prenom].
+                       '" and laboratoire ="'.$_POST[$case_laboratoire].'" and organisation ="'.$_POST[$case_organisation].'"';
+$test_auteur_resultat = mysqli_query($database, $test_auteur_requete);
+$test_auteur = mysqli_fetch_array($test_auteur_resultat);
+
+if(empty($test_auteur)){
+    $insertion_auteur_requete = "insert into chercheur(nom,prenom,laboratoire,organisation) values('".$_POST[$case_nom]."','".$_POST[$case_prenom]."','"
+                             .$_POST[$case_laboratoire]."','".$_POST[$case_organisation]."');";
+    $insertion_auteur_resultat = mysqli_query($database, $insertion_auteur_requete);
+    $auteur_ajoute = 1;
+}
+}
+}
+}
 ?>
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr">
 <head>
@@ -18,64 +52,50 @@ session_start();
 	<title>
 		 Ajouter des auteurs 
 	</title>
-        <script language ="javascript" type ="text/javascript">
-            
-           function validation(){
-                    
-                    var erreur = true;
-                    
-                    if (document.inscription.nom.value=='') {
-                    document.getElementById("erreur_nom").innerHTML = " Veuillez saisir le nom d'auteur.";
-                    erreur = false;
-                    }
-                    else document.getElementById("erreur_nom").innerHTML = "";
-                    
-                    if (document.inscription.prenom.value=='') {
-                    document.getElementById("erreur_prenom").innerHTML = " Veuillez saisir le prénom de l'auteur.";
-                    erreur = false;
-                    }
-                    else document.getElementById("erreur_prenom").innerHTML = "";
-                    
-                    if (document.inscription.laboratoire.value=='Choisir') {
-                    document.getElementById("erreur_laboratoire").innerHTML = " Veuillez chosir un laboratoire de recherche.";
-                    erreur = false;
-                    }
-                    else document.getElementById("erreur_laboratoire").innerHTML = "";
-                    
-                    if (document.inscription.organisation.value=='') {
-                    document.getElementById("erreur_organisation").innerHTML = " Veuillez saisir votre organisation.";
-                    erreur = false;
-                    }
-                    else document.getElementById("erreur_organisation").innerHTML = "";
-                    
-                    return erreur;
-           }       
-        </script>
 </head>
-    <body onload="document.ajout_auteur.reset();" style="background-color: #3498db">
+       <?php
+       if($auteur_ajoute==0||isset($erreur[$case_nom])||isset($erreur[$case_prenom])||isset($erreur[$case_laboratoire])||isset($erreur[$case_organisation])){
+           print('<body style="background-color: #3498db">
    <div class ="container" style="padding-top: 10px">
        
        <h1 style="color: whitesmoke">Ajouter des auteurs</h1><br>
-           <div  style="color:whitesmoke" text-align: left valign: center padding-right:20px>Indiquez les informations des auteurs puis validez de nouveau l'ajout de la publication.</div><br>
-   <form  name ="inscription" method="post" onsubmit="return validation(this)" action='#'>
- 
-       <table>
-       <tbody>
-       <tr>
-           <td class="libelle"><label for="label">Nom</label></td>
-       <td><input class="form-control" name="nom" size="30" type="text" id = "nom"></input></td>
-       <td><span class="erreur" id="erreur_nom"></span></td>
+           <div  style="color:whitesmoke" text-align: left valign: center padding-right:20px>Indiquez les informations des auteurs puis validez de nouveau l\'ajout de la publication.</div><br>
+   <form class ="form-horizontal" name ="inscription" method="post" action="nouveau_auteur.php?');
+           foreach($_GET as $nom => $prenom){             if(!isset($chaine)) $chaine = $nom."=".$prenom;
+            else $chaine .=  "&".$nom."=".$prenom;
+           }
+           echo $chaine;
+           echo('">');
+       $i=1;
+       foreach($_GET as $nom => $prenom){
+       $case_nom = 'nom'.$i;
+       $case_prenom = 'prenom'.$i;
+       $case_laboratoire = 'laboratoire'.$i;
+       $case_organisation = 'organisation'.$i;
+       print('
+           <div class ="container">
+           <table>
+           <tbody>
+           <h2 style="color: whitesmoke">Auteur '.$i .':</h1><br>
+           <tr>
+       <td class="libelle"><label for="label">Nom</label></td>
+       <td><input class="form-control" name="nom'.$i.'" size="30" type="text" id = "nom" value="'.$nom.'"></input></td>
+       <td><span class="erreur" id="erreur_nom">');
+       if(isset($erreur[$case_nom])) echo $erreur[$case_nom];
+       print('</span></td>
        </tr>
            
        <tr>
-           <td class="libelle"><label for="label">Prénom</label></td>
-       <td><input class="form-control" name="prenom" size="30" type="text" id = "prenom"></input></td>
-       <td><span class="erreur" id="erreur_prenom"></span></td>
+       <td class="libelle"><label for="label">Prénom</label></td>
+       <td><input class="form-control" name="prenom'.$i.'" size="30" type="text" id = "prenom" value="'.$prenom.'"></input></td>
+       <td><span class="erreur" id="erreur_prenom">');
+       if(isset($erreur[$case_prenom])) echo $erreur[$case_prenom];
+       print('</span></td>
        </tr>
            
        <tr>
        <td class="libelle"><label for="label">Laboratoire de recherche</label></td>
-       <td><select class="form-control" name="laboratoire" id = "laboratoire">
+       <td><select class="form-control" name="laboratoire'.$i.'" id = "laboratoire">
        <option selected disabled="">Choisir
        <option>CREIDD
        <option>ERA
@@ -85,20 +105,34 @@ session_start();
        <option>LNIO
        <option>LOSI
        <option>Tech-CICO</select></td>
-       <td><span class="erreur" id="erreur_laboratoire"></span></td>
+       <td><span class="erreur" id="erreur_laboratoire">');
+       if(isset($erreur[$case_laboratoire])) echo $erreur[$case_laboratoire];
+       print('</span></td>
        </tr>
-       
+
        <tr>
        <td class="libelle"><label for="label">Organisation</label> </td>
-       <td><input class="form-control" name="organisation" size="30" type="text" id="organisation"></input></td>
-       <td><span class="erreur" id="erreur_organisation"></span></td>
+       <td><input class="form-control" name="organisation'.$i.'" size="30" type="text" id="organisation"></input></td>
+       <td><span class="erreur" id="erreur_organisation">');
+       if(isset($erreur[$case_organisation])) echo $erreur[$case_organisation];
+       print('</span></td>
        </tr>
-           
        </tbody>
        </table>
-   </p><br>
+       </div>
+       ');
+       $i++;
+       }
+       print('</p><br>
+       <input type = "hidden" name="nombre_auteur" value = "'.$i.'">
        <input class ="btn btn-outline btn-lg" type="submit" value="Ajouter les auteurs" >
-</form>
+       </form>');
+       }
+       else print('<body style="background-color: #3498db">
+               <div class ="container"><h2 style="color: whitesmoke">Les auteurs ont été ajoutés</h2>
+               <center><button type="button" class = "btn btn-outline btn-lg" onClick="window.close();" >Fermer</button></center></div>
+               </body>');
+       ?>
     
 <!-- #global --></body>
 </html>
