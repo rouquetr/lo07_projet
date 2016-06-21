@@ -92,7 +92,8 @@ $(document).ready(function(){
                 <input type="hidden" name = "deconnexion" value = 1></input>
                 <a href="espace_membre/mon_compte.php">
                 <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Mon Compte</button></td></a></tr>
-                <tr><button class ="btn btn-success btn-sm" type="submit">Déconnexion</button></tr>'); ?></div>
+                <tr><button class ="btn btn-success btn-sm" type="submit">Déconnexion</button></tr></tbody>
+    </table></form>'); ?></div>
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-fixed-top">
         <div class="container">

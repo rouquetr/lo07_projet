@@ -86,7 +86,7 @@ $(document).ready(function(){
     
 <div class="container hide" id = "connexion">
     <?php if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])){
-    print('<form  name ="connexion" method="post" action="index.php">
+    print('<form  name ="connexion" method="post" action="publications.php">
     <tbody>
     <tr>
     <td><label for="label">Email</label></td>
@@ -105,11 +105,12 @@ $(document).ready(function(){
     </tr> 
     </tbody>
     </table></form>');}
-    else print('<form  name ="connexion" method="post" action="index.php"><tbody><tr>
+    else print('<form  name ="connexion" method="post" action="publications.php"><tbody><tr>
                 <input type="hidden" name = "deconnexion" value = 1></input>
                 <a href="espace_membre/mon_compte.php">
                 <button type="button" class="btn btn-success btn-sm" data-dismiss="modal">Mon Compte</button></td></a></tr>
-                <tr><button class ="btn btn-success btn-sm" type="submit">Déconnexion</button></tr>'); ?></div>
+                <tr><button class ="btn btn-success btn-sm" type="submit">Déconnexion</button></tr></tbody>
+    </table></form>'); ?></div>
 
 <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
   <!-- Brand and toggle get grouped for better mobile display -->
@@ -168,7 +169,7 @@ $(document).ready(function(){
       <li>
       <a href="#" data-placement="bottom" id="connexion_bouton">
       <?php if(empty($_SESSION['nom'])&&empty($_SESSION['prenom'])&&empty($_SESSION['email'])) echo "Connexion";
-      else echo "Mon compte";?></a>
+      else echo $_SESSION['prenom'];?></a>
       </li>     
     </ul>
   </form>
