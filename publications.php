@@ -2,6 +2,8 @@
 session_start();
 require_once("espace_membre/database.php");
 $erreur_connection = "";
+$erreur_recherche = "";
+
 if(isset($_POST['deconnexion'])){
 if($_POST['deconnexion']==1) {
     session_destroy ();
@@ -20,7 +22,29 @@ if(!empty($_POST['email'])&&!empty($_POST['mdp'])){
         $_SESSION['email'] = $connexion['email'];
         }
         else $erreur_connection = "<label for='label'>Mot de passe incorrect</label>";
+}
+
+if(isset($_GET['auteur'])||isset($_GET['laboratoire'])||isset($_GET['annee'])||isset($_GET['date_tri'])){
+    if(!empty($_GET['auteur'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."'
+                                                      and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
         }
+    }
+    else if (isset($_GET['laboratoire'])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where chercheur.laboratoire = '".$_GET['laboratoire']."'
+                                and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+
+    else if (isset($_GET['annee'])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where publication.date >= ".$_GET['annee']."
+                                and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+    else $publication_requete = "select * from publication ORDER BY id_publication ASC";
+}
+else $publication_requete = "select distinct * from publication ORDER BY id_publication ASC";
+    
+    $publication_resultat = mysqli_query($database, $publication_requete);
+        
 ?>
 <head>
 
@@ -127,31 +151,42 @@ $(document).ready(function(){
   <!-- Collect the nav links, forms, and other content for toggling -->
 <form class="navbar-form" name ='recherche'> 
   <ul class="nav navbar-nav">
-     <li><input type="text" class="form-control" placeholder="Auteur" name="auteur"></li>
+     <li><input type="text" class="form-control" placeholder="Auteur" name="auteur" list = "auteurs" autocomplete="off">
+         <datalist id="auteurs">
+
+         <?php 
+         $auteur_requete = "select distinct * from chercheur where not(nom='admin') order by nom ASC;";
+         $auteur_resultat = mysqli_query($database, $auteur_requete);
+       
+         while($auteur = mysqli_fetch_array($auteur_resultat)) echo '<option value="'.$auteur['prenom'].' '.$auteur ['nom'].'">'; ?>
+    </datalist></li>
      
-     <li><select class="form-control" name="laboratoire" id = "laboratoire">
-       <option selected disabled="">Laboratoire
-       <option>CREIDD
-       <option>ERA
-       <option>GAMMA3
-       <option>LASMIS
-       <option>LM2S
-       <option>LNIO
-       <option>LOSI
-       <option>Tech-CICO</select></li>
+     <li><select class="form-control" name="laboratoire" id ="laboratoire">
+       <option selected disabled="">Laboratoire</option>
+       <option>CREIDD</option>
+       <option>ERA</option>
+       <option>GAMMA3</option>
+       <option>LASMIS</option>
+       <option>LM2S</option>
+       <option>LNIO</option>
+       <option>LOSI</option>
+       <option>Tech-CICO</option>
+       </select></li>
        
        <li><a href="#">Depuis</a></li>
        
-       <li><select class="form-control" name="laboratoire" id = "Année">
-       <option selected disabled="">Année
-       <option>CREIDD
-       <option>ERA
-       <option>GAMMA3
-       <option>LASMIS
-       <option>LM2S
-       <option>LNIO
-       <option>LOSI
-       <option>Tech-CICO</select></li>
+       <li><select class="form-control" name="annee" id = "annee">
+       <option <?php if(!isset($_GET['annee'])) echo "selected";?> disabled="">Année
+       <?php 
+       $annee_requete = "select distinct date from publication order by date ASC;";
+       $annee_resultat = mysqli_query($database, $annee_requete);
+       
+       while($annee = mysqli_fetch_array($annee_resultat)) if(isset($_GET['annee'])){
+               if($_GET['annee']==$annee['date']) echo "<option selected>".$annee['date']."</option>";
+               else echo "<option>".$annee['date']."</option>";
+       }
+               else echo "<option>".$annee['date']."</option>"; ?>
+       </select></li>
        
        <li style="padding-top: 18px; padding-left: 10px"><input class ="checkbox" type="checkbox" name="date_tri"></li>
        
@@ -176,12 +211,13 @@ $(document).ready(function(){
   </div><!-- /.navbar-collapse -->
 </nav>
 
-<div class="container" style="padding-top: 140px">                                                                                      
+<div class="container" style="padding-top: 140px">
+    <h2 style="color: red"><?php echo $erreur_recherche; ?> </h2>
   <div class="table-responsive">          
   <table class="table">
     <thead>
       <tr>
-        <th>Auteurs</th>
+        <th>Auteurs </th>
         <th>Titre</th>
         <th>Catégorie</th>
         <th>Label</th>
@@ -191,199 +227,33 @@ $(document).ready(function(){
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>      <tr>
-        <td>Anna</td>
-        <td>Pitt</td>
-        <td>35</td>
-        <td>New York</td>
-        <td>USA</td>
-      </tr>
+    <?php
+    //echo $publication_requete;
+    while($publication= mysqli_fetch_array($publication_resultat)){
+        echo "<tr><td>";
+        $auteur_requete = "select distinct nom, prenom from chercheur, publication, publie where publie.id_chercheur = chercheur.id_chercheur
+                           AND publie.id_publication = ".$publication['id_publication']." order by ordre ASC";
+        $auteur_resultat = mysqli_query($database, $auteur_requete);
+        while($auteur= mysqli_fetch_array($auteur_resultat)){
+            echo $auteur['prenom']." ". $auteur['nom'];
+            echo "</br>";
+        }
+        echo "</td><td>";
+        echo $publication['titre'];
+        echo "</td><td>";
+        echo $publication['categorie'];
+        echo "</td><td>";
+        echo $publication['label'];
+        echo "</td><td>";
+        echo $publication['date'];
+        echo "</td><td>";
+        echo $publication['lieu'];
+        echo "</td><td>";
+        echo $publication['type'];
+        echo "</td><td>";
+        echo "</td></tr>";
+    } 
+    ?>
     </tbody>
   </table>
   </div>

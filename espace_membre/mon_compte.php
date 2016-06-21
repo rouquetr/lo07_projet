@@ -47,8 +47,8 @@
         foreach($auteur as $value){
             $value = ltrim($value);
             list($cle,$val) = explode(" ",$value);
-            $nom = $cle;
-            $prenom = $val;
+            $prenom = $cle;
+            $nom = $val;
             $test_auteur_requete = "select * from chercheur where nom = '".$nom."' AND prenom = '".$prenom."'";
             $test_auteur_resultat = mysqli_query($database, $test_auteur_requete);
             $test_auteur = mysqli_fetch_array($test_auteur_resultat);
@@ -79,8 +79,8 @@
             
             $value = ltrim($value);
             list($cle,$val) = explode(" ",$value);
-            $nom = $cle;
-            $prenom = $val;
+            $prenom = $cle;
+            $nom = $val;
             
             $id_chercheur_requete = "select * from chercheur where nom='".$nom."' AND prenom='".$prenom."'";
             $id_chercheur_resultat = mysqli_query($database, $id_chercheur_requete);
@@ -327,7 +327,7 @@
            
        <tr>
        <td class="libelle"><label for="label">Auteur(s)</label></td>
-       <td><input class="form-control" name="auteur" size="30" type="text" id ="auteur" placeholder="Nom Prénom, Nom2 Prénom2,..." <?php if(isset($chaine))echo'value="'.$_POST['auteur'].'"';?>></input></td>
+       <td><input class="form-control" name="auteur" size="30" type="text" id ="auteur" placeholder="Prénom Nom, Prénom2 Nom2,..." <?php if(isset($chaine))echo'value="'.$_POST['auteur'].'"';?>></input></td>
        <td><span class="erreur" id="erreur_auteur"></span></td>
        </tr>
            
