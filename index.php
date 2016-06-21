@@ -117,7 +117,7 @@ $(document).ready(function(){
                         <a href="#labo">Nos Labos</a>
                     </li>
                     <li class="page-scroll">
-                        <a href="#about">Publications récentes</a>
+                        <a href="#about">Publications</a>
                     </li>
                     <li>
                         <a href="#" data-placement="bottom" id="connexion_bouton">
@@ -245,7 +245,7 @@ $(document).ready(function(){
         <div class="container">
             <div class="row">
                 <div class="col-lg-12 text-center">
-                    <h2>Publications récentes</h2>
+                    <h2>Publications</h2>
                     <hr class="star-light">
                 </div>
             </div>
