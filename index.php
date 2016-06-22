@@ -258,8 +258,8 @@ $(document).ready(function(){
                     <p>Whether you're a student looking to showcase your work, a professional looking to attract clients, or a graphic artist looking to share your projects, this template is the perfect starting point!</p>
                 </div>
                 <div class="col-lg-8 col-lg-offset-2 text-center">
-                    <a href="#" class="btn btn-lg btn-outline">
-                        <i class="fa fa-download"></i> Download Theme
+                    <a href="publications.php" class="btn btn-lg btn-outline">
+                     Accéder aux publications
                     </a>
                 </div>
             </div>
@@ -346,7 +346,7 @@ $(document).ready(function(){
                                 </li>
                             </ul>-->
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=CREIDD"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -370,7 +370,7 @@ $(document).ready(function(){
                             <img src="img/labs/ERA.png" width=400 class="img-responsive img-centered" alt="">
                             <p>L’équipe « Environnement de Réseaux Autonomes » a été créée en janvier 2008. Elle a depuis développé une forte compétence dans le domaine des réseaux et de leur pilotage ainsi qu’une compétence reconnue dans les technologies multi-agents. Cette double compétence est sans conteste la force de l’équipe d’autant plus qu’elle s'appuie sur tout un ensemble d’outils de test et de simulation.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=ERA"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -394,7 +394,7 @@ $(document).ready(function(){
                             <img src="img/labs/GAMMA3.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créée en 2010, l’équipe-projet GAMMA3 (commune à l’UTT et à l’INRIA) étudie et développe des algorithmes de génération automatique de maillages, des outils pour la modélisation géométrique, ainsi que des méthodologies adaptatives avancées pour la simulation numérique.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=GAMMA3"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -418,7 +418,7 @@ $(document).ready(function(){
                             <img src="img/labs/LASMIS.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Le Laboratoire des Systèmes Mécaniques et d'Ingénierie Simultanée a été créé en septembre 1994, en même temps que l'Université de Technologie de Troyes. L'objectif du LASMIS est de développer des outils d'ingénierie mécanique pour la conception et la fabrication de composants critiques pour la sécurité et la sureté de fonctionnement. </p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=LASMIS"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -442,7 +442,7 @@ $(document).ready(function(){
                             <img src="img/labs/LM2S.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Le Laboratoire de Modélisation et Sûreté des Systèmes a été créé en 1995. Il regroupe au sein d’une même équipe, des spécialistes en sûreté de fonctionnement et en surveillance des systèmes. Ce laboratoire est fortement impliqué dans le transfert de technologies, notamment avec PSA Peugeot-Citroën, Renault, Michelin, SNECMA, EDF, CEA, INERIS, …</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=LM2S"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -466,7 +466,7 @@ $(document).ready(function(){
                             <img src="img/labs/LNIO.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créée en 1994, l’équipe du Laboratoire de Nanotechnologie et Instrumentation Optique utilise la lumière pour étudier, observer, manipuler, structurer la matière à l’échelle nanométrique. Ses recherches trouvent une application directe dans les nano-capteurs, l’étude du vivant (membrane cellulaire)...</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=LNIO"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -490,7 +490,7 @@ $(document).ready(function(){
                             <img src="img/labs/LOSI.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créé en 1996, le Laboratoire d’Optimisation des Systèmes Industriels est le laboratoire de l’UTT spécialisé dans l’étude des systèmes logistiques et de production. Son objectif est de développer des outils d'aide à la décision pour améliorer ces systèmes complexes, de la conception à l'exploitation, en termes d'efficacité et de compétitivité.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=LOSI"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>
@@ -514,7 +514,7 @@ $(document).ready(function(){
                             <img src="img/labs/TechCICO.png" width=400 class="img-responsive img-centered" alt="">
                             <p>Créée en 1998, l’équipe Tech-CICO articule sciences humaines et sociales & sciences et techno- logies de l'information et de la communication. Les travaux de cette équipe portent sur l'analyse, la modélisation et l’instrumentation des activités coopératives.</p>
                             <br/>
-                            <button type="button" class="btn btn-default" data-dismiss="modal"><i class="fa fa-search"></i> Voir les publications</button>
+                            <a href = "./publications.php?laboratoire=Tech-CICO"><button type="button" class="btn btn-default"><i class="fa fa-search"></i> Voir les publications</button></a>
                         </div>
                     </div>
                 </div>

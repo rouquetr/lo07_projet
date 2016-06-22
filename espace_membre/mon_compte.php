@@ -232,8 +232,11 @@
             <!-- Collect the nav links, forms, and other content for toggling -->
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
-                    <li class="hidden">
-                        <a href="../index.php"></a>
+                     <li>
+                        <a href="../publications.php">Publications</a>
+                    </li>
+                    <li>
+                        <a href="../publications.php?auteur=<?php echo $_SESSION['prenom'].'+'.$_SESSION['nom']; ?>">Mes publications</a>
                     </li>
                 </ul>
             </div>
@@ -378,7 +381,55 @@
        </table>
        </p>
        <input class ="btn btn-outline btn-lg" type="submit" value="Ajouter une publication" >
-        </form>
+       </form>
+              
+       <?php 
+       $administrateur_requete = "select admin from compte where email = '".$_SESSION['email']."'";
+       $administrateur_resultat = mysqli_query($database, $administrateur_requete);
+       $administrateur = mysqli_fetch_array($administrateur_resultat);
+       
+       if($administrateur['admin']==1){
+           echo '<div class = "container">
+                 <h2 style="color: whitesmoke">Liste des comptes</h1><br>';
+           $compte_requete = "select * from compte, chercheur where id_compte = id_chercheur";
+           $compte_resultat = mysqli_query($database, $compte_requete);
+           echo '<div class="table-responsive">          
+             <table class="table table-striped">
+            <thead>
+              <tr>
+                <th>ID_compte </th>
+                <th>Email</th>
+                <th>Mot de passe</th>
+                <th>Nom</th>
+                <th>Prénom</th>
+                <th>Laboratoire</th>
+                <th>Organisation</th>
+              </tr>
+            </thead>
+            <tbody>';
+        while($compte= mysqli_fetch_array($compte_resultat)){
+        echo "<tr><td>";
+        echo $compte['id_compte'];
+        echo "</td><td>";
+        echo $compte['email'];
+        echo "</td><td>";
+        echo $compte['mdp'];
+        echo "</td><td>";
+        echo $compte['nom'];
+        echo "</td><td>";
+        echo $compte['prenom'];
+        echo "</td><td>";
+        echo $compte['laboratoire'];
+        echo "</td><td>";
+        echo $compte['organisation'];
+        echo "</td><td>";
+        echo "</td></tr>";
+    } 
+    echo'</tbody>
+         </table>
+         </div>';
+       }       
+        ?>
        
     </div>
 <!-- #global --></body>

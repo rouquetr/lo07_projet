@@ -3,6 +3,7 @@ session_start();
 require_once("espace_membre/database.php");
 $erreur_connection = "";
 $erreur_recherche = "";
+$modif = false;
 
 if(isset($_POST['deconnexion'])){
 if($_POST['deconnexion']==1) {
@@ -25,7 +26,78 @@ if(!empty($_POST['email'])&&!empty($_POST['mdp'])){
 }
 
 if(isset($_GET['auteur'])||isset($_GET['laboratoire'])||isset($_GET['annee'])||isset($_GET['date_tri'])){
-    if(!empty($_GET['auteur'])){
+    if (!empty($_GET['auteur'])&&isset($_GET['laboratoire'])&&isset($_GET['annee'])&&isset($_GET['date_tri'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."'
+                                                     and chercheur.laboratoire = '".$_GET['laboratoire']."' and publication.date >= ".$_GET['annee']."
+                                                     and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
+        }
+    }
+    else if(!empty($_GET['auteur'])&&isset($_GET['laboratoire'])&&isset($_GET['annee'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."' and chercheur.laboratoire = '".$_GET['laboratoire']."'
+                                                      and publication.date >= ".$_GET['annee']." and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
+        }
+    }
+    else if(!empty($_GET['auteur'])&&isset($_GET['laboratoire'])&&isset($_GET['date_tri'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."'
+                                                      and chercheur.laboratoire = '".$_GET['laboratoire']."' and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
+        }
+    }
+    else if(isset($_GET['laboratoire'])&&isset($_GET['annee'])&&isset($_GET['date_tri'])){
+        $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where publication.date >= ".$_GET['annee']."
+                                and chercheur.laboratoire = '".$_GET['laboratoire']."' and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
+    }
+    else if(!empty($_GET['auteur'])&&isset($_GET['laboratoire'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."' and chercheur.laboratoire = '".$_GET['laboratoire']."'
+                                                      and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
+        }
+    }
+    else if(!empty($_GET['auteur'])&&isset($_GET['annee'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."'
+                                                      and publication.date >= ".$_GET['annee']." and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
+        }
+    }
+    else if(!empty($_GET['auteur'])&&isset($_GET['date_tri'])){
+        $auteur = explode(" ", $_GET['auteur']);
+        if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."'
+                                                      and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
+        else {
+            $erreur_recherche = "L'auteur recherché est introuvable";
+            $publication_requete = "select * from publication ORDER BY id_publication ASC";
+        }
+    }
+    else if(isset($_GET['laboratoire'])&&isset($_GET['annee'])){
+        $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where publication.date >= ".$_GET['annee']."
+                                and chercheur.laboratoire = '".$_GET['laboratoire']."' and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+    }
+    else if(isset($_GET['laboratoire'])&&isset($_GET['date_tri'])){
+        $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where 
+                                chercheur.laboratoire = '".$_GET['laboratoire']."' and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
+    }
+    else if(isset($_GET['annee'])&&isset($_GET['date_tri'])){
+        $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where publication.date >= ".$_GET['annee']."
+                                and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
+    }
+    else if(!empty($_GET['auteur'])){
         $auteur = explode(" ", $_GET['auteur']);
         if(isset($auteur[1])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where nom = '".$auteur[1]."' and prenom ='".$auteur[0]."'
                                                       and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
@@ -39,6 +111,8 @@ if(isset($_GET['auteur'])||isset($_GET['laboratoire'])||isset($_GET['annee'])||i
 
     else if (isset($_GET['annee'])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where publication.date >= ".$_GET['annee']."
                                 and publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by categorie, date DESC";
+    else if (isset($_GET['date_tri'])) $publication_requete = "select distinct titre, categorie, label, date, lieu, type, publie.id_publication from publication, chercheur, publie where
+                                       publie.id_chercheur = chercheur.id_chercheur and publie.id_publication = publication.id_publication ORDER by date DESC";
     else $publication_requete = "select * from publication ORDER BY id_publication ASC";
 }
 else $publication_requete = "select distinct * from publication ORDER BY id_publication ASC";
@@ -192,13 +266,15 @@ $(document).ready(function(){
        
        <li><a href="#">Trier par date</a></li>
        
+       <input type ="hidden" name ="avance" id ="avance" value ="">
        <li><button class ="btn" type="submit">Rechercher</button></li>
        
       <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Recherche avancée <b class="caret"></b></a>
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Avancé <b class="caret"></b></a>
         <ul class="dropdown-menu">
-          <li><a href="#">Collaborations extérieurs <br>du chercheur choisi</a></li>
-          <li><a href="#">Co-auteurs du chercheur <br>choisi</a></li>          
+          <li><a onclick="document.getElementById('avance').value=1;recherche.submit();">Collaborations extérieurs <br>du chercheur choisi</a></li>
+          <li><a onclick="document.getElementById('avance').value=2;recherche.submit();">Co-auteurs du chercheur <br>choisi</a></li>
+          <li><a href="publications.php">Réinitialiser la recherche</a></li> 
         </ul>
       </li>
       <li>
@@ -214,7 +290,7 @@ $(document).ready(function(){
 <div class="container" style="padding-top: 140px">
     <h2 style="color: red"><?php echo $erreur_recherche; ?> </h2>
   <div class="table-responsive">          
-  <table class="table">
+  <table class="table table-striped">
     <thead>
       <tr>
         <th>Auteurs </th>
@@ -235,8 +311,15 @@ $(document).ready(function(){
                            AND publie.id_publication = ".$publication['id_publication']." order by ordre ASC";
         $auteur_resultat = mysqli_query($database, $auteur_requete);
         while($auteur= mysqli_fetch_array($auteur_resultat)){
-            echo $auteur['prenom']." ". $auteur['nom'];
+            echo "<a href = publications.php?auteur=".$auteur['prenom']."+".$auteur['nom'].">".$auteur['prenom']." ". $auteur['nom']."</a>";
             echo "</br>";
+            if(isset($_SESSION['email'])){
+                $email_requete = "select email from compte, chercheur, publie, publication where email = '".$_SESSION['email']."' AND publie.id_publication =".$publication['id_publication'].
+                                 " and publie.id_chercheur = chercheur.id_chercheur and nom = '".$auteur['nom']."' and prenom = '".$auteur['prenom']."' and chercheur.id_chercheur = id_compte";
+                $email_resultat = mysqli_query($database, $email_requete);
+                $email = mysqli_fetch_array($email_resultat);
+                if ($email['email']==$_SESSION['email']) $modif = true;
+            }
         }
         echo "</td><td>";
         echo $publication['titre'];
@@ -251,7 +334,11 @@ $(document).ready(function(){
         echo "</td><td>";
         echo $publication['type'];
         echo "</td><td>";
+        if ($modif == true){
+        echo '<button class "=btn btn-sm">Modifier</button>';
+        }
         echo "</td></tr>";
+        $modif = false;
     } 
     ?>
     </tbody>
