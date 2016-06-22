@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Client :  127.0.0.1
--- GÃ©nÃ©rÃ© le :  Dim 19 Juin 2016 Ã  23:31
+-- GÃ©nÃ©rÃ© le :  Mer 22 Juin 2016 Ã  00:25
 -- Version du serveur :  5.7.9
 -- Version de PHP :  5.6.16
 
@@ -34,7 +34,7 @@ CREATE TABLE IF NOT EXISTS `chercheur` (
   `laboratoire` varchar(20) NOT NULL,
   `organisation` varchar(20) NOT NULL,
   PRIMARY KEY (`id_chercheur`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `chercheur`
@@ -42,8 +42,11 @@ CREATE TABLE IF NOT EXISTS `chercheur` (
 
 INSERT INTO `chercheur` (`id_chercheur`, `nom`, `prenom`, `laboratoire`, `organisation`) VALUES
 (0, 'admin', 'admin', '', ''),
-(1, 'RaphaÃ«l', 'Rouquet', 'LNIO', ''),
-(2, 'Lefeuvre', 'ClÃ©ment', 'LNIO', '');
+(1, 'Rouquet', 'RaphaÃ«l', 'LNIO', 'UTT'),
+(2, 'Lefeuvre', 'ClÃ©ment', 'LNIO', 'UTT'),
+(19, 'Obama', 'Barack', 'GAMMA3', 'USA'),
+(20, 'Torvald', 'Linus', 'Tech-CICO', 'Linux'),
+(21, 'Polnareff', 'Michel', 'Tech-CICO', 'Chanteur');
 
 -- --------------------------------------------------------
 
@@ -65,7 +68,8 @@ CREATE TABLE IF NOT EXISTS `compte` (
 --
 
 INSERT INTO `compte` (`id_compte`, `email`, `mdp`, `admin`) VALUES
-(0, 'raphael.rouquet@utt.fr', 'admin', 1);
+(0, 'raphael.rouquet@utt.fr', 'admin', 1),
+(1, 'r95.rouquet@orange.fr', '123', 0);
 
 -- --------------------------------------------------------
 
@@ -83,14 +87,18 @@ CREATE TABLE IF NOT EXISTS `publication` (
   `lieu` varchar(100) DEFAULT NULL,
   `type` varchar(15) NOT NULL,
   PRIMARY KEY (`id_publication`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8;
 
 --
 -- Contenu de la table `publication`
 --
 
 INSERT INTO `publication` (`id_publication`, `titre`, `categorie`, `label`, `date`, `lieu`, `type`) VALUES
-(1, 'Essai nÂ°1', 'AP', NULL, 2016, NULL, '');
+(19, 'ConfÃ©rence 1', 'RI', 'MB', 2016, 'Maison Blanche', 'ConfÃ©rence'),
+(20, 'CrÃ©er son systÃ¨me d''exploitation', 'RI', 'LIN', 1990, 'Aucune idÃ©e', 'ConfÃ©rence'),
+(21, 'J''aime LO07 de tout mon coeur', 'TD', 'LO07', 2016, 'UTT', 'Ouvrage'),
+(22, 'J''aime NF19 de tout mon coeur', 'BV', 'NF19', 2015, 'Chez moi', 'Revue'),
+(23, 'On ira tous au paradis', 'RI', 'Chanson', 1972, 'PolnarÃ©volution', 'ConfÃ©rence');
 
 -- --------------------------------------------------------
 
@@ -112,7 +120,14 @@ CREATE TABLE IF NOT EXISTS `publie` (
 --
 
 INSERT INTO `publie` (`id_chercheur`, `id_publication`, `ordre`) VALUES
-(1, 1, 1);
+(1, 19, 1),
+(1, 21, 1),
+(1, 22, 1),
+(1, 23, 2),
+(2, 19, 2),
+(19, 19, 3),
+(20, 20, 1),
+(21, 23, 1);
 
 --
 -- Contraintes pour les tables exportÃ©es

@@ -262,9 +262,9 @@ $(document).ready(function(){
                else echo "<option>".$annee['date']."</option>"; ?>
        </select></li>
        
-       <li style="padding-top: 18px; padding-left: 10px"><input class ="checkbox" type="checkbox" name="date_tri"></li>
+       <li style="padding-top: 18px; padding-left: 10px"><input class ="checkbox" type="checkbox" name="date_tri" id = "date_tri"></li>
        
-       <li><a href="#">Trier par date</a></li>
+       <li><a>Trier par date</a></li>
        
        <input type ="hidden" name ="avance" id ="avance" value ="">
        <li><button class ="btn" type="submit">Rechercher</button></li>
