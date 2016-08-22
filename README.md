@@ -4,8 +4,8 @@ Monter le projet SelectivelyBackend en local
 ==
 
 - récupérer le dépôt git :
->
-######git clone url_depot
+
+>######git clone url_depot
 ######git checkout XXXX TODO<
 
 - installer un LAMP (ou équivalent)
@@ -14,9 +14,9 @@ Monter le projet SelectivelyBackend en local
 - installer composer : https://getcomposer.org/download/
 - changer la taille mémoire limite de php dans le php.ini :
 
-######; Maximum amount of memory a script may consume (128MB)
+>######; Maximum amount of memory a script may consume (128MB)
 ######; http://php.net/memory-limit
-######memory_limit = 2G
+######memory_limit = 2G<
 
 -Configurer le fichier SelectivelyBackend/app/config/parameters.yml avec ses paramètres personnels :
 
