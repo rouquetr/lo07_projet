@@ -17,7 +17,7 @@ Monter le projet SelectivelyBackend en local
 >######; Maximum amount of memory a script may consume (128MB)
 ######; http://php.net/memory-limit
 ######memory_limit = 2G
-
+  
 - Configurer le fichier SelectivelyBackend/app/config/parameters.yml avec ses paramètres personnels :
 
 >######database_host: 127.0.0.1
@@ -25,7 +25,7 @@ Monter le projet SelectivelyBackend en local
 ######database_name: selectively_rio
 ######database_user: root
 ######database_password: null
-
+  
 - exécuter les commandes suivantes pour installer les packages et déployer les assets (fichiers statiques) :
 
 >######php app/console
