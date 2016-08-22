@@ -18,7 +18,7 @@ Monter le projet SelectivelyBackend en local
 ######; http://php.net/memory-limit
 ######memory_limit = 2G
   
-- Configurer le fichier SelectivelyBackend/app/config/parameters.yml avec ses paramètres personnels :
+- Configurer le fichier SelectivelyBackend/app/config/parameters.yml avec ses paramètres personnels :  
 
 >######database_host: 127.0.0.1
 ######database_port: 3306
