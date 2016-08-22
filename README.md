@@ -1,8 +1,8 @@
 Installation
-===
+==
 
 Monter le projet SelectivelyBackend en local
-=
+
 
 - récupérer le dépôt git :
 
