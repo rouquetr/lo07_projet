@@ -9,9 +9,13 @@ Monter le projet SelectivelyBackend en local
 ######git checkout XXXX TODO
 
 -installer un LAMP (ou équivalent)
+
 -installer mySQL Workbench
+
 -Importer les données de la base dans mySQL Workbench ( Server > Data Import )
+
 -installer composer : https://getcomposer.org/download/
+
 -changer la taille mémoire limite de php dans le php.ini :
 
 ######; Maximum amount of memory a script may consume (128MB)
