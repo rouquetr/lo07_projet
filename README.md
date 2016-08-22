@@ -5,9 +5,7 @@
 
 - récupérer le dépôt git :
 
-`git clone url_depot`
-
-`git checkout XXXX TODO`
+`git clone https://github.com/SelectivelyTeam/SelectivelyBackend.git`
 
 - installer un LAMP (ou équivalent)
 - installer mySQL Workbench
@@ -27,19 +25,19 @@
 
 `database_host: 127.0.0.1`
 
-`database_port: 3306`
+`database_port: [Port_Base]`
 
-`database_name: selectively_rio`
+`database_name: [Nom_Base]`
 
-`database_user: root`
+`database_user: [Identifiant]`
 
-`database_password: null`
+`database_password: [MotDePasse]`
 
-- exécuter les commandes suivantes pour installer les packages et déployer les assets (fichiers statiques) :
+- exécuter les commandes suivantes pour installer les packages et déployer les assets (fichiers statiques), se placer dans le dossier SelectivelyBackend :
 
 
-`php app/console`
+`composer install`
 
 `php app/console asset:install`
 
-`app/console assetic:dump`
+`php app/console assetic:dump`
