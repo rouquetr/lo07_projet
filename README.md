@@ -6,7 +6,7 @@ Monter le projet SelectivelyBackend en local
 - récupérer le dépôt git :
 
 
-    'git clone url_depot
+    'git clone url_depot'
     git checkout XXXX TODO'
 
 - installer un LAMP (ou équivalent)
