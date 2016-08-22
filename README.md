@@ -1,13 +1,10 @@
 # lo07_projet
 
-** Code Mardown ***
-*********************
-
 Monter le projet SelectivelyBackend en local
 ==
 
 récupérer le dépôt git :
-####
+###
 
 git clone url_depot
 git checkout XXXX TODO
