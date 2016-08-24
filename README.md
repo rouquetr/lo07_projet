@@ -38,6 +38,7 @@
 - Execute following commands to create a local account and promote it (when it asks you for a role, type `ROLE_SUPER_ADMIN`):
 
 `php app/console fos:user:create`
+
 `php app/console fos:user:promote`
  
 - Use the following URL to connect yourself on the local site:
