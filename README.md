@@ -1,17 +1,16 @@
 #Installation
 
-##Monter le projet SelectivelyBackend en local
+##Local installation of the SelectivelyBackend
 
+- Install a LAMP (or equivalent)
 
-- récupérer le dépôt git :
+- Download the repository in the repertory /www from your LAMP installation :
 
 `git clone https://github.com/SelectivelyTeam/SelectivelyBackend.git`
 
-- installer un LAMP (ou équivalent)
-- installer mySQL Workbench
-- Importer les données de la base dans mySQL Workbench ( Server > Data Import )
-- installer composer : https://getcomposer.org/download/
-- changer la taille mémoire limite de php dans le php.ini :
+- Install a database management system like mySQL Workbench or PHPMyAdmin (or equivalent)
+- Install Composer : https://getcomposer.org/download/
+- Change the memory limit of php in php.ini :
 
 
 `; Maximum amount of memory a script may consume (128MB)`
@@ -20,24 +19,27 @@
 
 `memory_limit = 2G`
 
-- Configurer le fichier SelectivelyBackend/app/config/parameters.yml avec ses paramètres personnels :
-
-
-`database_host: 127.0.0.1`
-
-`database_port: [Port_Base]`
-
-`database_name: [Nom_Base]`
-
-`database_user: [Identifiant]`
-
-`database_password: [MotDePasse]`
-
-- exécuter les commandes suivantes pour installer les packages et déployer les assets (fichiers statiques), se placer dans le dossier SelectivelyBackend :
+- Execute following command to install packages :
 
 
 `composer install`
 
+- Execute following commands to deploy assets (statics files), allowing to avoid css problems :
+
+
 `php app/console asset:install`
 
 `php app/console assetic:dump`
+
+- Execute following command to load the data in the database:
+
+`php app/console doctrine:fixtures:load`
+
+- Execute following commands to create a local account and promote it (when it asks you for a role, type `ROLE_SUPER_ADMIN`):
+
+`php app/console fos:user:create`
+`php app/console fos:user:promote`
+ 
+- Use the following URL to connect yourself on the local site:
+
+`localhost/SelectivelyBackend/web/app_dev.php/admin`
