@@ -86,6 +86,9 @@ Import those files into postman:
 
 - For each request, we're testing if the correct response code is received
 
-- For the post, we check if the returned values are the same than the json sended
+- For the post, we check if the response values are the same than the json sended
 
-- For the put, we change, remove, add some attributes and test if the returned values are corrects
+- For the put, we change, remove, add some attributes and test if the response values are corrects
+
+- The email of the officemanager used for testing is a constant in the code, there's one method for deleting it the begining and the end of the test loop. 
+  There's also another method to get the token from this officemanager. Those two methods are only availables for this officemanager, and only this one.
