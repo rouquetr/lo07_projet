@@ -90,5 +90,5 @@ Import those files into postman:
 
 - For the put, we change, remove, add some attributes and test if the response values are corrects
 
-- The email of the officemanager used for testing is a constant in the code, there's one method for deleting it the begining and the end of the test loop. 
-  There's also another method to get the token from this officemanager. Those two methods are only availables for this officemanager, and only this one.
+- The email of the officemanager used for testing is a constant in the code, there's one method for deleting it the begining and the end of the test loop.
+There's also another method to get the token from this officemanager. Those two methods are only availables for this officemanager, and only this one.
