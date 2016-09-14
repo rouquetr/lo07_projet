@@ -14,10 +14,10 @@ With postman, import those files into postman:
 		
 `officemanager_env_stage.json`
 
--With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS installed, it can be downloaded from :
+- With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS installed, it can be downloaded from :
 
 `https://nodejs.org/en/download/package-manager/`
 
--Then, install newman with this command:
+- Then, install newman with this command:
 
 `npm install newman --global;`
