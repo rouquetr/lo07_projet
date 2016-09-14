@@ -68,8 +68,20 @@ With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS instal
 
 - Then, install newman with this command:
 
-`npm install newman --global;`
+`npm install newman --global`
 
 - You can run the tests with this commande, the second input is you environment, if you want to do your tests on stage, just replace 'local' by 'stage':
 
-`newman run officemanager_test.json -e officemanager_env_local.json;`
+`newman run officemanager_test.json -e officemanager_env_local.json`
+
+- You can also do the loop more than one time with -n, for example: 
+
+`newman run officemanager_test.json -e officemanager_env_local.json -n 10`
+
+Testing strategy:
+
+- For each request, we're testing if the correct response code is received
+
+- For the post, we check if the returned values are the same than the json sended
+
+- For the put, we change, remove, add some attributes and test if the returned values are corrects
