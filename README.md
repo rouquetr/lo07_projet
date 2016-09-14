@@ -46,9 +46,9 @@
 `localhost/SelectivelyBackend/web/app_dev.php/admin`
 
 
-##Tests
+#Tests
 
-With postman, import those files into postman:
+##With postman, import those files into postman:
 
 - for the tests, and the requests:
 	
@@ -62,7 +62,7 @@ With postman, import those files into postman:
 		
 `officemanager_env_stage.json`
 
-With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS installed, it can be downloaded from :
+##With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS installed, it can be downloaded from :
 
 `https://nodejs.org/en/download/package-manager/`
 
@@ -78,7 +78,7 @@ With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS instal
 
 `newman run officemanager_test.json -e officemanager_env_local.json -n 10`
 
-Testing strategy:
+##Testing strategy:
 
 - For each request, we're testing if the correct response code is received
 
