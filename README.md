@@ -170,7 +170,7 @@ Import those files into postman, they are in the "tests" folder:
 
 - You can run the tests with this commande, the second input is you environment, if you want to do your tests on stage, just replace 'local' by 'stage':
 
-`newman run officemanager_test.json -e officemanager_env_local.json`
+`newman run tests/officemanager_test.json -e tests/officemanager_env_local.json`
 
 - You can also do the loop more than one time with -n, for example: 
 
