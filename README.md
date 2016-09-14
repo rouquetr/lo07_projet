@@ -48,7 +48,8 @@
 
 ##Tests
 
--With postman, import those files into postman: 
+-With postman, import those files into postman:
+
 	-`officemanager_test.json` for the tests, and the requests
 	-`officemanager_env_local.json` for the local environment, be sure to check if the environment variable base_url is the same than yours
 	-`officemanager_env_stage.json` for the stage environment, nothing to check here
