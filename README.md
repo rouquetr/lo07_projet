@@ -48,7 +48,9 @@
 
 #Tests
 
-##With postman, import those files into postman:
+##Postman
+
+Import those files into postman:
 
 - for the tests, and the requests:
 	
@@ -62,7 +64,9 @@
 		
 `officemanager_env_stage.json`
 
-##With newman, be sure to have a NodeJS version > v4, if you haven't NodeJS installed, it can be downloaded from :
+##Newman
+
+- Be sure to have a NodeJS version > v4, if you haven't NodeJS installed, it can be downloaded from :
 
 `https://nodejs.org/en/download/package-manager/`
 
