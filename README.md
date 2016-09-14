@@ -50,7 +50,7 @@
 
 ##Postman
 
-Import those files into postman, they are in the "tests" folder:
+Import those files into postman, they are in the 'tests' folder:
 
 - for the tests, and the requests:
 	
